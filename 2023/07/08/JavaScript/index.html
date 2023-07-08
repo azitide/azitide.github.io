@@ -20,6 +20,9 @@
     href="/">
   <title>JavaScript-简单核心语法</title>
   
+    <link rel="icon" href="https://img1.imgtp.com/2023/07/08/GOm3jqdZ.ico">
+  
+  
     
       <meta 
         property="og:title" 
@@ -28,7 +31,7 @@
     
       <meta 
         property="og:url" 
-        content="http://azitide.github.io/2023/07/06/JavaScript/index.html">
+        content="http://azitide.github.io/2023/07/08/JavaScript/index.html">
     
     
       <meta 
@@ -42,7 +45,7 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2023-07-06">
+        content="2023-07-08">
       <meta 
         property="og:article:modified_time" 
         content="2023-07-06">
@@ -109,6 +112,34 @@
   </script>
   
     
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+    
   
   <script>
     // control reverse button
@@ -148,15 +179,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -289,7 +323,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>8</span>
+    <span>9</span>
     <span>文章</span>
   </a>
   <a 
@@ -301,7 +335,7 @@
   <a 
     class="author-tags-count" 
     href="/tags">
-    <span>11</span>
+    <span>12</span>
     <span>标签</span>
   </a>
 </div>
@@ -358,7 +392,7 @@
       <a href="/categories/%E5%89%8D%E7%AB%AF/">
         <div class="categories-list-item">
           前端
-          <span class="categories-list-item-badge">7</span>
+          <span class="categories-list-item-badge">8</span>
         </div>
       </a>
     
@@ -372,7 +406,7 @@
       <a href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/">
         <div class="categories-list-item">
           小白知识
-          <span class="categories-list-item-badge">1</span>
+          <span class="categories-list-item-badge">2</span>
         </div>
       </a>
     
@@ -397,9 +431,9 @@
       </a>
     
       <a 
-        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
-        title="技巧手册">
-        <div class="tags-list-item">技巧手册</div>
+        href="/tags/html/" 
+        title="html">
+        <div class="tags-list-item">html</div>
       </a>
     
       <a 
@@ -409,39 +443,15 @@
       </a>
     
       <a 
-        href="/tags/html/" 
-        title="html">
-        <div class="tags-list-item">html</div>
+        href="/tags/Node-js/" 
+        title="Node.js">
+        <div class="tags-list-item">Node.js</div>
       </a>
     
       <a 
-        href="/tags/JavaScript/" 
-        title="JavaScript">
-        <div class="tags-list-item">JavaScript</div>
-      </a>
-    
-      <a 
-        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
-        title="微信小程序">
-        <div class="tags-list-item">微信小程序</div>
-      </a>
-    
-      <a 
-        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
-        title="安装教程">
-        <div class="tags-list-item">安装教程</div>
-      </a>
-    
-      <a 
-        href="/tags/%E6%A1%86%E6%9E%B6/" 
-        title="框架">
-        <div class="tags-list-item">框架</div>
-      </a>
-    
-      <a 
-        href="/tags/VUE/" 
-        title="VUE">
-        <div class="tags-list-item">VUE</div>
+        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+        title="技巧手册">
+        <div class="tags-list-item">技巧手册</div>
       </a>
     
       <a 
@@ -451,9 +461,39 @@
       </a>
     
       <a 
-        href="/tags/Node-js/" 
-        title="Node.js">
-        <div class="tags-list-item">Node.js</div>
+        href="/tags/VUE/" 
+        title="VUE">
+        <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%A1%86%E6%9E%B6/" 
+        title="框架">
+        <div class="tags-list-item">框架</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+        title="安装教程">
+        <div class="tags-list-item">安装教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/JavaScript/" 
+        title="JavaScript">
+        <div class="tags-list-item">JavaScript</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
       </a>
     
   </div>
@@ -472,12 +512,12 @@
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2023-07-06T01:50:19.355Z">
+    <time datetime="2023-07-08T07:23:22.975Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2023-07-06</span>
+      <span>2023-07-08</span>
     </time>
     
       <span class="dot"></span>
@@ -491,7 +531,7 @@
     
     
       <span class="dot"></span>
-      <span>661 字</span>
+      <span>699 字</span>
     
   </div>
   
@@ -536,51 +576,72 @@
   <div 
     id="section" 
     class="post-content">
-    <h1 id="JavaScript-简单核心语法"><a href="#JavaScript-简单核心语法" class="headerlink" title="JavaScript 简单核心语法"></a>JavaScript 简单核心语法</h1><h2 id="一、变量"><a href="#一、变量" class="headerlink" title="一、变量"></a>一、变量</h2><pre class="highlight"><span class="line">var / let / const </span><br></pre>
+    <h1 id="JavaScript-简单核心语法"><a href="#JavaScript-简单核心语法" class="headerlink" title="JavaScript 简单核心语法"></a>JavaScript 简单核心语法</h1><h2 id="一、变量"><a href="#一、变量" class="headerlink" title="一、变量"></a>一、变量</h2><pre class="line-numbers language-none"><code class="language-none">var &#x2F; let &#x2F; const </code></pre>
 
-<h4 id="1、赋值变量"><a href="#1、赋值变量" class="headerlink" title="1、赋值变量"></a>1、赋值变量</h4><pre class="highlight"><span class="line">var myAge = 18</span><br></pre>
+<h4 id="1、赋值变量"><a href="#1、赋值变量" class="headerlink" title="1、赋值变量"></a>1、赋值变量</h4><pre class="line-numbers language-none"><code class="language-none">var myAge &#x3D; 18</code></pre>
 
-<h4 id="2、字符串变量"><a href="#2、字符串变量" class="headerlink" title="2、字符串变量"></a>2、字符串变量</h4><pre class="highlight"><span class="line">var myName = “帅哥”</span><br></pre>
+<h4 id="2、字符串变量"><a href="#2、字符串变量" class="headerlink" title="2、字符串变量"></a>2、字符串变量</h4><pre class="line-numbers language-none"><code class="language-none">var myName &#x3D; “帅哥”</code></pre>
 
-<h4 id="3、真假值变量"><a href="#3、真假值变量" class="headerlink" title="3、真假值变量"></a>3、真假值变量</h4><pre class="highlight"><span class="line">var myBool = true 丨注意只有true（真）和false（假）</span><br></pre>
+<h4 id="3、真假值变量"><a href="#3、真假值变量" class="headerlink" title="3、真假值变量"></a>3、真假值变量</h4><pre class="line-numbers language-none"><code class="language-none">var myBool &#x3D; true 丨注意只有true（真）和false（假）</code></pre>
 
-<h4 id="4、清空变量"><a href="#4、清空变量" class="headerlink" title="4、清空变量"></a>4、清空变量</h4><pre class="highlight"><span class="line">var myNull = null 丨用于清空变量内容，变成空值</span><br></pre>
+<h4 id="4、清空变量"><a href="#4、清空变量" class="headerlink" title="4、清空变量"></a>4、清空变量</h4><pre class="line-numbers language-none"><code class="language-none">var myNull &#x3D; null 丨用于清空变量内容，变成空值</code></pre>
 
-<h4 id="5、默认值"><a href="#5、默认值" class="headerlink" title="5、默认值"></a>5、默认值</h4><pre class="highlight"><span class="line">var myUn 丨这是有值的，没有赋予就是默认</span><br></pre>
+<h4 id="5、默认值"><a href="#5、默认值" class="headerlink" title="5、默认值"></a>5、默认值</h4><pre class="line-numbers language-none"><code class="language-none">var myUn 丨这是有值的，没有赋予就是默认</code></pre>
 
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><pre class="highlight"><span class="line">+ / - / * / % / &lt; / &gt; / = </span><br></pre>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><pre class="line-numbers language-none"><code class="language-none">+ &#x2F; - &#x2F; * &#x2F; % &#x2F; &lt; &#x2F; &gt; &#x2F; &#x3D; </code></pre>
 
-<h4 id="6、算数变量"><a href="#6、算数变量" class="headerlink" title="6、算数变量"></a>6、算数变量</h4><pre class="highlight"><span class="line">var sum = 1 - 2 * 3 % 4   丨一起运算时，遵从“先乘除后加减”</span><br></pre>
-
-<p>或</p>
-<pre class="highlight"><span class="line">var sum = &quot;你好&quot; + “javaScript” 丨这样子是 语句的拼接</span><br></pre>
-
-<h4 id="7、对比变量"><a href="#7、对比变量" class="headerlink" title="7、对比变量"></a>7、对比变量</h4><pre class="highlight"><span class="line">var isT = 28 &gt;= 4  丨28大于4或者等于4，isT这个变量就变为true（真值）</span><br></pre>
+<h4 id="6、算数变量"><a href="#6、算数变量" class="headerlink" title="6、算数变量"></a>6、算数变量</h4><pre class="line-numbers language-none"><code class="language-none">var sum &#x3D; 1 - 2 * 3 % 4   丨一起运算时，遵从“先乘除后加减”</code></pre>
 
 <p>或</p>
-<pre class="highlight"><span class="line">console.log(2 === 2) 丨这个在语句中去对比，要3个等号，2=2，即为true（真）值</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">var sum &#x3D; &quot;你好&quot; + “javaScript” 丨这样子是 语句的拼接</code></pre>
 
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><pre class="highlight"><span class="line">var myAge = [1,2,3,4,5]</span><br><span class="line"></span><br></pre>
+<h4 id="7、对比变量"><a href="#7、对比变量" class="headerlink" title="7、对比变量"></a>7、对比变量</h4><pre class="line-numbers language-none"><code class="language-none">var isT &#x3D; 28 &gt;&#x3D; 4  丨28大于4或者等于4，isT这个变量就变为true（真值）</code></pre>
 
-<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><pre class="highlight"><span class="line">console.log(myAge[1])   丨 1 代表第一位数，输出第一个变量</span><br></pre>
+<p>或</p>
+<pre class="line-numbers language-none"><code class="language-none">console.log(2 &#x3D;&#x3D;&#x3D; 2) 丨这个在语句中去对比，要3个等号，2&#x3D;2，即为true（真）值</code></pre>
+
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><pre class="line-numbers language-none"><code class="language-none">var myAge &#x3D; [1,2,3,4,5]
+</code></pre>
+
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><pre class="line-numbers language-none"><code class="language-none">console.log(myAge[1])   丨 1 代表第一位数，输出第一个变量</code></pre>
 
 
 
-<h2 id="二、语句"><a href="#二、语句" class="headerlink" title="二、语句"></a>二、语句</h2><h4 id="if判断语句"><a href="#if判断语句" class="headerlink" title="if判断语句"></a>if判断语句</h4><pre class="highlight"><span class="line">if (true) &#123;</span><br><span class="line">   console.log(&#x27;我会执行第一&#x27;)</span><br><span class="line">&#125;  </span><br></pre>
+<h2 id="二、语句"><a href="#二、语句" class="headerlink" title="二、语句"></a>二、语句</h2><h4 id="if判断语句"><a href="#if判断语句" class="headerlink" title="if判断语句"></a>if判断语句</h4><pre class="line-numbers language-none"><code class="language-none">if (true) &#123;
+   console.log(&#39;我会执行第一&#39;)
+&#125;  </code></pre>
 
 <ul>
 <li>小括号是条件 <strong>真就执行 假就反之</strong> 跳过</li>
 <li>大括号是执行的内容，执行事件等</li>
 </ul>
-<pre class="highlight"><span class="line">if (2 &gt; 3) &#123;</span><br><span class="line">   console.log(“我会输出1)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">   console.log(&quot;我会输出2&quot;)</span><br><span class="line">&#125;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">if (2 &gt; 3) &#123;
+   console.log(“我会输出1)
+&#125; else &#123;
+   console.log(&quot;我会输出2&quot;)
+&#125;</code></pre>
 
 <ul>
 <li>小括号的条件 2不大于3 遵从 <strong>真就执行 假就反之</strong> 的原则，他会执行else的事件</li>
 </ul>
-<h4 id="多重嵌套if"><a href="#多重嵌套if" class="headerlink" title="多重嵌套if"></a>多重嵌套if</h4><pre class="highlight"><span class="line">var a = 5</span><br><span class="line"></span><br><span class="line">if（a &lt;= 1) &#123;</span><br><span class="line"> console.log(&quot;我出1&quot;)</span><br><span class="line">&#125; else if（a = 2）&#123;</span><br><span class="line"> console.log(&quot;我出2&quot;)</span><br><span class="line">&#125; esle if（a = 3) &#123;</span><br><span class="line"> console.log(“我出3)</span><br><span class="line">&#125; else if (a &gt;=4) &#123;</span><br><span class="line"> console.log(&quot;我出4&quot;)</span><br><span class="line">&#125;</span><br></pre>
+<h4 id="多重嵌套if"><a href="#多重嵌套if" class="headerlink" title="多重嵌套if"></a>多重嵌套if</h4><pre class="line-numbers language-none"><code class="language-none">var a &#x3D; 5
+
+if（a &lt;&#x3D; 1) &#123;
+ console.log(&quot;我出1&quot;)
+&#125; else if（a &#x3D; 2）&#123;
+ console.log(&quot;我出2&quot;)
+&#125; esle if（a &#x3D; 3) &#123;
+ console.log(“我出3)
+&#125; else if (a &gt;&#x3D;4) &#123;
+ console.log(&quot;我出4&quot;)
+&#125;</code></pre>
 
 <p>从第一条开始判断直到符合条件的一条才会停下，a等于5 ，只有最后一条符合了条件，所以它会出4</p>
-<h4 id="for循环语句"><a href="#for循环语句" class="headerlink" title="for循环语句"></a>for循环语句</h4><pre class="highlight"><span class="line">for (var a = 1; a &lt; 10; a++) &#123;</span><br><span class="line">   console.log(我会执行10次)</span><br><span class="line">   sun b = 1 + 1</span><br><span class="line">&#125;</span><br><span class="line">console.log(b)</span><br></pre>
+<h4 id="for循环语句"><a href="#for循环语句" class="headerlink" title="for循环语句"></a>for循环语句</h4><pre class="line-numbers language-none"><code class="language-none">for (var a &#x3D; 1; a &lt; 10; a++) &#123;
+   console.log(我会执行10次)
+   sun b &#x3D; 1 + 1
+&#125;
+console.log(b)</code></pre>
 
 <ul>
 <li>var a &#x3D; 1   丨是声明循环次数的变量</li>
@@ -588,15 +649,30 @@
 <li>a++           丨是循环的每次增量   a++是a+1的简写</li>
 <li>{          }     丨是循环的事件或者变量</li>
 </ul>
-<h2 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h2><pre class="highlight"><span class="line">function getSum () &#123;</span><br><span class="line">   var sum = 0</span><br><span class="line">   for (var a = 0; a &lt; 10; a++) &#123;</span><br><span class="line">      sum +=1</span><br><span class="line">   &#125;</span><br><span class="line">   return sum</span><br><span class="line">   console.log(&quot;已经加了10次了&quot;)</span><br><span class="line">&#125;</span><br></pre>
+<h2 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h2><pre class="line-numbers language-none"><code class="language-none">function getSum () &#123;
+   var sum &#x3D; 0
+   for (var a &#x3D; 0; a &lt; 10; a++) &#123;
+      sum +&#x3D;1
+   &#125;
+   return sum
+   console.log(&quot;已经加了10次了&quot;)
+&#125;</code></pre>
 
 <p>function    丨固定的声明函数</p>
 <p>getSum     丨自己定义名字的函数名称</p>
 <p>return       丨结束返回值，结束并将函数返回到外部</p>
 <p>函数写好后需要自己调用</p>
-<pre class="highlight"><span class="line">var qwe = getSum()</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">var qwe &#x3D; getSum()</code></pre>
 
-<h4 id="小括号的使用"><a href="#小括号的使用" class="headerlink" title="小括号的使用"></a>小括号的使用</h4><pre class="highlight"><span class="line">function getSum (start，end) &#123;</span><br><span class="line">   var sum = 0</span><br><span class="line">   for (var a = start; a &lt; end; a++) &#123;</span><br><span class="line">      sum +=1</span><br><span class="line">   &#125;</span><br><span class="line">   return sum</span><br><span class="line">   console.log(&quot;已经加了10次了&quot;)</span><br><span class="line">&#125;</span><br><span class="line">var qwe = getSum(100,110)</span><br></pre>
+<h4 id="小括号的使用"><a href="#小括号的使用" class="headerlink" title="小括号的使用"></a>小括号的使用</h4><pre class="line-numbers language-none"><code class="language-none">function getSum (start，end) &#123;
+   var sum &#x3D; 0
+   for (var a &#x3D; start; a &lt; end; a++) &#123;
+      sum +&#x3D;1
+   &#125;
+   return sum
+   console.log(&quot;已经加了10次了&quot;)
+&#125;
+var qwe &#x3D; getSum(100,110)</code></pre>
 
 <p><strong>可以决定给值的区间</strong></p>
 <h3 id="常用的核心语法"><a href="#常用的核心语法" class="headerlink" title="常用的核心语法"></a>常用的核心语法</h3>
@@ -618,8 +694,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://azitide.github.io/2023/07/06/JavaScript/">
-            http://azitide.github.io/2023/07/06/JavaScript/
+            href="http://azitide.github.io/2023/07/08/JavaScript/">
+            http://azitide.github.io/2023/07/08/JavaScript/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -628,6 +704,20 @@
   </div>
 </article>
 <div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2023/07/08/Hexo/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">小白知识--Hexo框架免费建网站(极速版) </div>
+          
+        </div>
+      </a>
+    </div>
   
   
     <div class="nav-item-next">
@@ -710,8 +800,13 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-07-06</div>
-        <a href="/2023/07/06/JavaScript/"><div class="recent-posts-item-content">JavaScript-简单核心语法</div></a>
+        <div class="recent-posts-item-title">2023-07-08</div>
+        <a href="/2023/07/08/Hexo/"><div class="recent-posts-item-content">小白知识--Hexo框架免费建网站(极速版)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-07-08</div>
+        <a href="/2023/07/08/JavaScript/"><div class="recent-posts-item-content">JavaScript-简单核心语法</div></a>
       </div>
     
       <div class="recent-posts-item">
@@ -722,11 +817,6 @@
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2023-06-03</div>
         <a href="/2023/06/03/oracle/"><div class="recent-posts-item-content">甲骨文中国云 白嫖一个服务器 永久免费</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-05-31</div>
-        <a href="/2023/05/31/Node.js/"><div class="recent-posts-item-content">Node.js简单快速使用手册</div></a>
       </div>
     
   </div>
