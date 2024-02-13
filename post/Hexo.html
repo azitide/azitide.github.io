@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>小白知识--Hexo框架免费建网站(极速版)</title>
+  
+
+  
+    
+      <meta 
+        property="og:title" 
+        content="小白知识--Hexo框架免费建网站(极速版)">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://azitide.github.io/post/Hexo.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-07-12">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-10-18">
+      <meta 
+        property="og:article:author" 
+        content="Azitide">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="网页">
+        
+          <meta 
+            property="og:article:tag" 
+            content="hexo">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Azitide</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          有意思的分享
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Azitide</p>
+<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>19</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>12</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3493127809665596?spm_id_from=333.1296.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="mailto:gan.zicheng@foxmail.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/gzcnb">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86-Hexo%E6%A1%86%E6%9E%B6%E7%AE%80%E5%8D%95%E5%BB%BA%E7%BD%91%E7%AB%99"><span class="toc-text">小白知识 Hexo框架简单建网站</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-text">快速上手</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%9C%A8%E4%BB%BB%E4%BD%95%E5%9C%B0%E6%96%B9%EF%BC%88%E5%A6%82%EF%BC%9A%E6%A1%8C%E9%9D%A2%EF%BC%89%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">1.1 在任何地方（如：桌面）新建一个文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E6%88%91%E4%BB%AC%E8%BF%9B%E5%8E%BB%E7%BB%88%E7%AB%AF"><span class="toc-text">1.2 我们进去终端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98"><span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">git准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">github准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%9B%B4%E6%94%B9"><span class="toc-text">信息更改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-text">安装插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B2%E5%87%80"><span class="toc-text">干净</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5-http-x2F-x2F-%E4%BD%A0%E7%9A%84Github%E7%94%A8%E6%88%B7%E5%90%8D-github-io-%E5%8D%B3%E5%8F%AF%E8%AE%BF%E9%97%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="toc-text">在浏览器输入 http:&#x2F;&#x2F;你的Github用户名.github.io 即可访问你的博客</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0"><span class="toc-text">文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF/">
+        <div class="categories-list-item">
+          前端
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/">
+        <div class="categories-list-item">
+          小白知识
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/ROS/">
+        <div class="categories-list-item">
+          ROS
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+        <div class="categories-list-item">
+          服务器
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+        title="安装教程">
+        <div class="tags-list-item">安装教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E7%BD%91%E9%A1%B5/" 
+        title="网页">
+        <div class="tags-list-item">网页</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+        title="技巧手册">
+        <div class="tags-list-item">技巧手册</div>
+      </a>
+    
+      <a 
+        href="/tags/html/" 
+        title="html">
+        <div class="tags-list-item">html</div>
+      </a>
+    
+      <a 
+        href="/tags/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" 
+        title="使用教程">
+        <div class="tags-list-item">使用教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%A1%86%E6%9E%B6/" 
+        title="框架">
+        <div class="tags-list-item">框架</div>
+      </a>
+    
+      <a 
+        href="/tags/VUE/" 
+        title="VUE">
+        <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/Node-js/" 
+        title="Node.js">
+        <div class="tags-list-item">Node.js</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/JavaScript/" 
+        title="JavaScript">
+        <div class="tags-list-item">JavaScript</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      小白知识--Hexo框架免费建网站(极速版)
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-07-12T02:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-07-12</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E5%89%8D%E7%AB%AF/" 
+          class="post-meta-link">
+          前端
+        </a>
+      
+        <a 
+          href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/" 
+          class="post-meta-link">
+          小白知识
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>894 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E7%BD%91%E9%A1%B5/" 
+            class="post-meta-link">
+            网页
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/hexo/" 
+            class="post-meta-link">
+            hexo
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="小白知识-Hexo框架简单建网站"><a href="#小白知识-Hexo框架简单建网站" class="headerlink" title="小白知识 Hexo框架简单建网站"></a>小白知识 Hexo框架简单建网站</h1><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piPlGHf"><img src="https://z1.ax1x.com/2023/10/17/piPlGHf.png" alt="piPlGHf.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/17/piPlGHf.png" class="lozad post-image"></a></p>
+<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><p>注： 需要安装下列应用程序</p>
+<pre class="line-numbers language-none"><code class="language-none">nods.js</code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">git</code></pre>
+
+<h4 id="1-1-在任何地方（如：桌面）新建一个文件夹"><a href="#1-1-在任何地方（如：桌面）新建一个文件夹" class="headerlink" title="1.1 在任何地方（如：桌面）新建一个文件夹"></a>1.1 在任何地方（如：桌面）新建一个文件夹</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/piPlN4g"><img src="https://z1.ax1x.com/2023/10/17/piPlN4g.png" alt="piPlN4g.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/17/piPlN4g.png" class="lozad post-image"></a></p>
+<h4 id="1-2-我们进去终端"><a href="#1-2-我们进去终端" class="headerlink" title="1.2 我们进去终端"></a>1.2 我们进去终端</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/piPlcUU"><img src="https://z1.ax1x.com/2023/10/17/piPlcUU.png" alt="piPlcUU.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/17/piPlcUU.png" class="lozad post-image"></a></p>
+<p>1.3 我们进去终端后 输入<strong>命令行</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piPlHUO"><img src="https://z1.ax1x.com/2023/10/17/piPlHUO.png" alt="piPlHUO.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/17/piPlHUO.png" class="lozad post-image"></a></p>
+<p>即：</p>
+<p>1.直接复制下面的命令行输入</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install hexo-cli -g</code></pre>
+
+<p>2.等它完成后再输</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo init blog</code></pre>
+
+<p>3.完成再输 （blog是文件名，可以自己定义）</p>
+<pre class="line-numbers language-none"><code class="language-none">cd blog</code></pre>
+
+<p>4.完成再输</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install</code></pre>
+
+<p>5.完成再输</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo s</code></pre>
+
+<p>出现网址按ctrl后点击鼠标可以直接进入了，其中的4000是默认端口</p>
+<pre class="line-numbers language-none"><code class="language-none">注：在终端界面在ctrl键+c键 可以关闭服务器 中断网站</code></pre>
+
+<p>我们来看下这个简洁网站，没有东西！</p>
+<p>这样肯定不好看，我们去官网下的主题，去找好看的！</p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes | 主题 Hexo</a></p>
+<p>在里面选择好看的，</p>
+<p>里面的主题一般放在github里，需要通过git拉取文件，但有些是通过npm或yarm安装的，最好是点进去主题查看主题教程。</p>
+<pre class="line-numbers language-none"><code class="language-none">注：下载主题或启动主题都要在blog（即上面第三步，你生成的文件夹里面打开终端）</code></pre>
+
+<p>下载完后</p>
+<p>打开后</p>
+<p>更改它的，更改为主题的名字或文件夹的名字</p>
+<pre class="line-numbers language-none"><code class="language-none">注：这是yml配置文件“：”后面要有空格</code></pre>
+
+<p>更改后重新启动在cmd终端输入</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo c</code></pre>
+
+<p>再输</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo g</code></pre>
+
+<p>再输 </p>
+<pre class="line-numbers language-none"><code class="language-none">hexo s</code></pre>
+
+<p>就可以看到网站已经更换到主题了</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages.html">在 GitHub Pages 上部署 Hexo | Hexo</a></p>
+<p>上面这个等于是一个免费的服务器托管</p>
+<h3 id="git准备工作"><a href="#git准备工作" class="headerlink" title="git准备工作"></a>git准备工作</h3><p>我们需要配置一下<strong>GitHub</strong>账户信息，用户名和邮箱为您github上的用户名和邮箱</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piipiKs"><img src="https://z1.ax1x.com/2023/10/18/piipiKs.png" alt="piipiKs.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/18/piipiKs.png" class="lozad post-image"></a></p>
+<p>在blog文件夹下，右键用<strong>Git Bash</strong>打开终端</p>
+<p>输入下方命令行（双引号要自己更改）</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --global user.name &quot;用户名&quot;</code></pre>
+
+<p>再输</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --global user.email &quot;邮箱&quot;</code></pre>
+
+<p>再输</p>
+<pre class="line-numbers language-none"><code class="language-none">ssh-keygen -t rsa -C &quot;邮箱&quot;</code></pre>
+
+<ul>
+<li>一路回车即可，之后在C:\Users\”你当前登录windows的账号的名字“<br>.ssh可以找到id_rsa.pub文件，用笔记本打开文件，复制里面的全部内容</li>
+</ul>
+<h3 id="github准备工作"><a href="#github准备工作" class="headerlink" title="github准备工作"></a>github准备工作</h3><ol>
+<li>新建仓库，仓库名为<strong>用户名.github.io</strong> </li>
+<li>点击仓库的settings，点击Deploy keys，</li>
+<li>然后点击Add deploy key，title设置为您的邮箱，</li>
+<li>Key为刚才复制的内容，之后点击Add key</li>
+</ol>
+<h3 id="信息更改"><a href="#信息更改" class="headerlink" title="信息更改"></a>信息更改</h3><p>准备工作基本做完，回到上面的_config.yml文件（官方网站文件），在最底部填写入代码</p>
+<p>即：</p>
+<pre class="line-numbers language-none"><code class="language-none">deploy:
+  type: git
+  repo: https:&#x2F;&#x2F;github.com&#x2F;您的用户名&#x2F;您的用户名.github.io.git
+  brach: master</code></pre>
+
+<p>还有这里地址</p>
+<pre class="line-numbers language-none"><code class="language-none">url: https:&#x2F;&#x2F;您的用户名.github.io&#x2F;</code></pre>
+
+<p>代码更改完成</p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>回到我们之前的blog文件夹，打开cmd终端，输入命令行</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install hexo-deployer-git --save</code></pre>
+
+<p>然后直接三连</p>
+<h4 id="干净"><a href="#干净" class="headerlink" title="干净"></a>干净</h4><p>清除缓存</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo c</code></pre>
+
+<p>生成静态文件</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo g</code></pre>
+
+<p>部署上线网站</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo d</code></pre>
+
+<hr>
+<p>部署完成</p>
+<h4 id="在浏览器输入-http-x2F-x2F-你的Github用户名-github-io-即可访问你的博客"><a href="#在浏览器输入-http-x2F-x2F-你的Github用户名-github-io-即可访问你的博客" class="headerlink" title="在浏览器输入 http:&#x2F;&#x2F;你的Github用户名.github.io 即可访问你的博客"></a>在浏览器输入 <strong><a href="https://link.juejin.cn/?target=http://%E4%BD%A0%E7%9A%84Github%E7%94%A8%E6%88%B7%E5%90%8D.github.io">http:&#x2F;&#x2F;你的Github用户名.github.io</a></strong> 即可访问你的博客</h4><h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><p>在.&#x2F; blog \ source \ _posts 在这个文件夹内是存放你的文章的，以md的文件形式保存</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>什么是md，看这个 <a target="_blank" rel="noopener" href="https://markdown.com.cn/">Markdown 官方教程</a></p>
+<p>每一篇文件都用md写入，hexo会主动读取并展示到网站。</p>
+<p>每一次文章写好放入文件夹即可直接三连</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo c</code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">hexo g</code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">hexp d</code></pre>
+
+<p><strong>网站即重新完成部署</strong></p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-danger copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Azitide
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://azitide.github.io/post/Hexo.html">
+            http://azitide.github.io/post/Hexo.html
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/post/oracle.html" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">甲骨文中国云 白嫖一个服务器 永久免费 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/post/weixin.html" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">小白知识--微信小程序的开发者知识 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'oe6x40wPhI0la0n7kuTarYk7-MdYXbMMI',
+        appKey: 'z7OSXleHLklmBjXu31qDhCF2',
+        placeholder: '欢迎评论！有问题或需求，看到回的，打开下面表情旁边的文本看到评论。',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86-Hexo%E6%A1%86%E6%9E%B6%E7%AE%80%E5%8D%95%E5%BB%BA%E7%BD%91%E7%AB%99"><span class="toc-text">小白知识 Hexo框架简单建网站</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-text">快速上手</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%9C%A8%E4%BB%BB%E4%BD%95%E5%9C%B0%E6%96%B9%EF%BC%88%E5%A6%82%EF%BC%9A%E6%A1%8C%E9%9D%A2%EF%BC%89%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">1.1 在任何地方（如：桌面）新建一个文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E6%88%91%E4%BB%AC%E8%BF%9B%E5%8E%BB%E7%BB%88%E7%AB%AF"><span class="toc-text">1.2 我们进去终端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98"><span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">git准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">github准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%9B%B4%E6%94%B9"><span class="toc-text">信息更改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-text">安装插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B2%E5%87%80"><span class="toc-text">干净</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5-http-x2F-x2F-%E4%BD%A0%E7%9A%84Github%E7%94%A8%E6%88%B7%E5%90%8D-github-io-%E5%8D%B3%E5%8F%AF%E8%AE%BF%E9%97%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="toc-text">在浏览器输入 http:&#x2F;&#x2F;你的Github用户名.github.io 即可访问你的博客</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0"><span class="toc-text">文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li></ol></li></ol></li></ol>
+</div>
+
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86-Hexo%E6%A1%86%E6%9E%B6%E7%AE%80%E5%8D%95%E5%BB%BA%E7%BD%91%E7%AB%99"><span class="toc-text">小白知识 Hexo框架简单建网站</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-text">快速上手</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%9C%A8%E4%BB%BB%E4%BD%95%E5%9C%B0%E6%96%B9%EF%BC%88%E5%A6%82%EF%BC%9A%E6%A1%8C%E9%9D%A2%EF%BC%89%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">1.1 在任何地方（如：桌面）新建一个文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E6%88%91%E4%BB%AC%E8%BF%9B%E5%8E%BB%E7%BB%88%E7%AB%AF"><span class="toc-text">1.2 我们进去终端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98"><span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">git准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">github准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%9B%B4%E6%94%B9"><span class="toc-text">信息更改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-text">安装插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B2%E5%87%80"><span class="toc-text">干净</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5-http-x2F-x2F-%E4%BD%A0%E7%9A%84Github%E7%94%A8%E6%88%B7%E5%90%8D-github-io-%E5%8D%B3%E5%8F%AF%E8%AE%BF%E9%97%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="toc-text">在浏览器输入 http:&#x2F;&#x2F;你的Github用户名.github.io 即可访问你的博客</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0"><span class="toc-text">文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li></ol></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-12-31</div>
+        <a href="/post/ubuntu_ROS_shoudong.html"><div class="recent-posts-item-content">ubuntu系统安装ROS（手动版）</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-11-28</div>
+        <a href="/post/baocunjingxiang.html"><div class="recent-posts-item-content">Ubuntu备份自定义镜像 --我的目的：保存ROS环境</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-10-31</div>
+        <a href="/post/ruanjian.html"><div class="recent-posts-item-content">小白知识--电脑的生产力与性能完美级调试</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-09-28</div>
+        <a href="/post/ROSfanyi.html"><div class="recent-posts-item-content">ROS包编译时遇到报错,直接解决90%的问题？</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2023-6-1
+          
+          
+                - 
+                2024
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Azitide
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+      <div class="BbeiAn-info">
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 啊梓提的 </a>
+      </div>
+      
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>

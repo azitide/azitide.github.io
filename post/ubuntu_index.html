@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>虚拟机安装ubuntu系统</title>
+  
+
+  
+    
+      <meta 
+        property="og:title" 
+        content="虚拟机安装ubuntu系统">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://azitide.github.io/post/ubuntu_index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-07-31">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-10-21">
+      <meta 
+        property="og:article:author" 
+        content="Azitide">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="安装教程">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Azitide</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          有意思的分享
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Azitide</p>
+<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>19</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>12</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3493127809665596?spm_id_from=333.1296.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="mailto:gan.zicheng@foxmail.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/gzcnb">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F"><span class="toc-text">虚拟机安装ubuntu系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80"><span class="toc-text">网址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="toc-text">系统设置</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF/">
+        <div class="categories-list-item">
+          前端
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/">
+        <div class="categories-list-item">
+          小白知识
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/ROS/">
+        <div class="categories-list-item">
+          ROS
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+        <div class="categories-list-item">
+          服务器
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+        title="安装教程">
+        <div class="tags-list-item">安装教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E7%BD%91%E9%A1%B5/" 
+        title="网页">
+        <div class="tags-list-item">网页</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+        title="技巧手册">
+        <div class="tags-list-item">技巧手册</div>
+      </a>
+    
+      <a 
+        href="/tags/html/" 
+        title="html">
+        <div class="tags-list-item">html</div>
+      </a>
+    
+      <a 
+        href="/tags/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" 
+        title="使用教程">
+        <div class="tags-list-item">使用教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%A1%86%E6%9E%B6/" 
+        title="框架">
+        <div class="tags-list-item">框架</div>
+      </a>
+    
+      <a 
+        href="/tags/VUE/" 
+        title="VUE">
+        <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/Node-js/" 
+        title="Node.js">
+        <div class="tags-list-item">Node.js</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/JavaScript/" 
+        title="JavaScript">
+        <div class="tags-list-item">JavaScript</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      虚拟机安装ubuntu系统
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-07-31T02:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-07-31</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/Linux/" 
+          class="post-meta-link">
+          Linux
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>930 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+            class="post-meta-link">
+            安装教程
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="虚拟机安装ubuntu系统"><a href="#虚拟机安装ubuntu系统" class="headerlink" title="虚拟机安装ubuntu系统"></a>虚拟机安装ubuntu系统</h1><p>官方的系统，服务器在国外，下载容易出错，所以我们用开源网站的下载，会比较快。</p>
+<h2 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h2><p>中科大安装源（优先推荐）</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/ubuntu-releases/">Index of &#x2F;ubuntu-releases&#x2F; (ustc.edu.cn)</a></p>
+<p>阿里开源</p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/?spm=a2c6h.25603864.0.0.23583decGrxsW7">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区 (aliyun.com)</a></p>
+<p>清华大学镜像</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>1.1 我们用阿里云的，进去网址，下载需要的版本</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCBIdH"><img src="https://z1.ax1x.com/2023/10/16/piCBIdH.png" alt="piCBIdH.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCBIdH.png" class="lozad post-image"></a></p>
+<p>1.2 选择点击对应的版本(我这里选的是20.04版本的，一般设备选desktop的镜像，这个是有引导的安装的)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCDklV"><img src="https://z1.ax1x.com/2023/10/16/piCDklV.png" alt="piCDklV.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCDklV.png" class="lozad post-image"></a></p>
+<p>完成、点击下载，进去后会自动下载，等待下载完成即可。（下载完后，检查一下镜像名称和大小，是否相差太多，没有问题即可）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCDew4"><img src="https://z1.ax1x.com/2023/10/16/piCDew4.png" alt="piCDew4.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCDew4.png" class="lozad post-image"></a></p>
+<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>2.1 打开虚拟机 （我用的是VMware Workstation 软件）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCDMf1"><img src="https://z1.ax1x.com/2023/10/16/piCDMf1.png" alt="piCDMf1.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCDMf1.png" class="lozad post-image"></a></p>
+<p>2.2 打开文件 –&gt; 新建虚拟机（会弹出一个页面）跟着选项一步步来</p>
+<p>第一步选择 自定义（高级）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCDtTH"><img src="https://z1.ax1x.com/2023/10/16/piCDtTH.png" alt="piCDtTH.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCDtTH.png" class="lozad post-image"></a></p>
+<p>第二步，选择硬件兼容性： workstation.16.x 这个是选择你虚拟机的版本，跟你对应就好（一般不改就可以了）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCDD6f"><img src="https://z1.ax1x.com/2023/10/16/piCDD6f.png" alt="piCDD6f.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCDD6f.png" class="lozad post-image"></a></p>
+<p>第三步，选择 稍后安装系统  </p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCDrX8"><img src="https://z1.ax1x.com/2023/10/16/piCDrX8.png" alt="piCDrX8.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCDrX8.png" class="lozad post-image"></a></p>
+<p>第四步，客户机操作系统 选择 Linux （因为ubuntu 是Linux的其中的分支 ），版本选择ubuntu</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piCD2kj"><img src="https://z1.ax1x.com/2023/10/16/piCD2kj.png" alt="piCD2kj.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/16/piCD2kj.png" class="lozad post-image"></a></p>
+<p>第五步，命名虚拟机名称，位置（路径）：空间需要比较大，最好放在C盘以外，路径不要出现中文</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdl.sunbangyan.cn/2023/10/16/68236b0852a04e69c900252e25bf3630.png" class="lozad post-image"src="https://picdl.sunbangyan.cn/2023/10/16/68236b0852a04e69c900252e25bf3630.png"></p>
+<p>第六步，处理器配置问题，看你需要的性能给大就给多，处理器数量给到4以上，小的话，<strong>最低给到2</strong>。内核数量给1就行</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picst.sunbangyan.cn/2023/10/16/3c4dfae127a144d0b9913e41e107d5a7.png" class="lozad post-image"src="https://picst.sunbangyan.cn/2023/10/16/3c4dfae127a144d0b9913e41e107d5a7.png"></p>
+<p>第七步，内存选择，一般家用电脑包括笔记本等都是16G左右，win系统就要用去6-8g，你能用就也就剩下10G左右，<strong>最低选择2g</strong>，看自己需求</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/7561a18e899cd0bb7fe7e5fad4d2c12e.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/7561a18e899cd0bb7fe7e5fad4d2c12e.png"></p>
+<p>第八步，网络类型 ：使用网络地址转换 即可</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picst.sunbangyan.cn/2023/10/16/9ce1015789036fad51a2118445c032ef.png" class="lozad post-image"src="https://picst.sunbangyan.cn/2023/10/16/9ce1015789036fad51a2118445c032ef.png"></p>
+<p>第九步，I&#x2F;O控制器选择   LSI Loogic </p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/d194cf999545b7b245d48bf9b7ee13d6.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/d194cf999545b7b245d48bf9b7ee13d6.png"></p>
+<p>第十步，虚拟磁盘类型选择 SCSI</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picss.sunbangyan.cn/2023/10/16/be01a712189a6088b7b25ab317061cb2.png" class="lozad post-image"src="https://picss.sunbangyan.cn/2023/10/16/be01a712189a6088b7b25ab317061cb2.png"></p>
+<p>第十一步，磁盘选择 - 创建新虚拟盘</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picst.sunbangyan.cn/2023/10/16/16ab3e370b5c518ae52a4e3ea4f2cc74.png" class="lozad post-image"src="https://picst.sunbangyan.cn/2023/10/16/16ab3e370b5c518ae52a4e3ea4f2cc74.png"></p>
+<p>第十二步，磁盘容量大小 有空间，尽量选择到100G，虚拟磁盘存储为单个文件或者多个都可以，但是考虑性能的话尽量选择单个</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picst.sunbangyan.cn/2023/10/16/a84616eb02d626d2f5d9e1a74966d4e6.png" class="lozad post-image"src="https://picst.sunbangyan.cn/2023/10/16/a84616eb02d626d2f5d9e1a74966d4e6.png"></p>
+<p>第十三步，磁盘文件名，<strong>不需要更改</strong>，直接下一步</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/ab6211c351bd5a5b5a44ee7f6a250c2d.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/ab6211c351bd5a5b5a44ee7f6a250c2d.png"></p>
+<p>第十四步，打开 <strong>自定义硬件</strong></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picst.sunbangyan.cn/2023/10/16/a91f91d973326f23e8e0b96446b4f52a.png" class="lozad post-image"src="https://picst.sunbangyan.cn/2023/10/16/a91f91d973326f23e8e0b96446b4f52a.png"></p>
+<p>第十五步，<strong>找到CD，选择使用iso映像文件</strong>，选择 - 找到开始时下载的iso镜像文件</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/5ccb70541ac432c32688efa12318fa5c.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/5ccb70541ac432c32688efa12318fa5c.png"></p>
+<p>文件选择</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picst.sunbangyan.cn/2023/10/16/5b70622e503a50eab020fec5c58131a1.png" class="lozad post-image"src="https://picst.sunbangyan.cn/2023/10/16/5b70622e503a50eab020fec5c58131a1.png"></p>
+<p>完成 即可，这样 系统 安装完成了</p>
+<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>一、点击 开启虚拟机</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/59a33fffe11eede27ea48292dfb8d68d.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/59a33fffe11eede27ea48292dfb8d68d.png"></p>
+<p>二、等待引导安装完成，在welcome下在滑到下面找到中文（简体），点击安装系统，然后会出现键盘选择，选择chinese即可，正常安装 即可，（在中途弹出黄色的窗口，提示你安装什么东西，可以直接选择安装）</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/2aafda8283c2eac4466d5dc08b4c88ac.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/2aafda8283c2eac4466d5dc08b4c88ac.png"></p>
+<p>二、1. 这里是选择输入法-英文优先–&gt; continue（下一步）</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picss.sunbangyan.cn/2023/10/16/2d78e14075e2d57196da4fbdcdaf6bc2.png" class="lozad post-image"src="https://picss.sunbangyan.cn/2023/10/16/2d78e14075e2d57196da4fbdcdaf6bc2.png"></p>
+<p>三、正常安装，-安装时下载更新</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picss.sunbangyan.cn/2023/10/16/28a21f7e3affde39b28ccf6f3e7cb3c7.png" class="lozad post-image"src="https://picss.sunbangyan.cn/2023/10/16/28a21f7e3affde39b28ccf6f3e7cb3c7.png"></p>
+<p>四、清除整个磁盘，再点击现在安装即可</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picss.sunbangyan.cn/2023/10/16/e6da5b4bcd7574385e3901913aebe44c.png" class="lozad post-image"src="https://picss.sunbangyan.cn/2023/10/16/e6da5b4bcd7574385e3901913aebe44c.png"></p>
+<p>五、地方，点击你所在的地图地点 - shanghai （必须要选择上海，不然会出问题）</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picdm.sunbangyan.cn/2023/10/16/d63b80754bc8bd0e7895cafd2bc59c3e.png" class="lozad post-image"src="https://picdm.sunbangyan.cn/2023/10/16/d63b80754bc8bd0e7895cafd2bc59c3e.png"></p>
+<p>六、输入信息用户名和密码，个人的话密码123456就行了，输完后等安装即可</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picss.sunbangyan.cn/2023/10/16/443b2191dde6de280460eec57c79b4d4.png" class="lozad post-image"src="https://picss.sunbangyan.cn/2023/10/16/443b2191dde6de280460eec57c79b4d4.png"></p>
+<p>等待安装完成，重启虚拟机即可 </p>
+<p>系统安装完成</p>
+<p>（关于20.04版本的中文是系统自带的，只需更新系统的输入法，在进行添加即可）</p>
+<p>2023.10.16重新更新。</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-danger copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Azitide
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://azitide.github.io/post/ubuntu_index.html">
+            http://azitide.github.io/post/ubuntu_index.html
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/post/ubuntu_ROS.html" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">ubuntu系统安装ROS（简单版） </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/post/oracle.html" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">甲骨文中国云 白嫖一个服务器 永久免费 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'oe6x40wPhI0la0n7kuTarYk7-MdYXbMMI',
+        appKey: 'z7OSXleHLklmBjXu31qDhCF2',
+        placeholder: '欢迎评论！有问题或需求，看到回的，打开下面表情旁边的文本看到评论。',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F"><span class="toc-text">虚拟机安装ubuntu系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80"><span class="toc-text">网址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="toc-text">系统设置</span></a></li></ol></li></ol>
+</div>
+
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F"><span class="toc-text">虚拟机安装ubuntu系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80"><span class="toc-text">网址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="toc-text">系统设置</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-12-31</div>
+        <a href="/post/ubuntu_ROS_shoudong.html"><div class="recent-posts-item-content">ubuntu系统安装ROS（手动版）</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-11-28</div>
+        <a href="/post/baocunjingxiang.html"><div class="recent-posts-item-content">Ubuntu备份自定义镜像 --我的目的：保存ROS环境</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-10-31</div>
+        <a href="/post/ruanjian.html"><div class="recent-posts-item-content">小白知识--电脑的生产力与性能完美级调试</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-09-28</div>
+        <a href="/post/ROSfanyi.html"><div class="recent-posts-item-content">ROS包编译时遇到报错,直接解决90%的问题？</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2023-6-1
+          
+          
+                - 
+                2024
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Azitide
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+      <div class="BbeiAn-info">
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 啊梓提的 </a>
+      </div>
+      
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>

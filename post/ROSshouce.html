@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>ROS基本工具命令行大全(概括)</title>
+  
+
+  
+    
+      <meta 
+        property="og:title" 
+        content="ROS基本工具命令行大全(概括)">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://azitide.github.io/post/ROSshouce.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-08-11">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-09-12">
+      <meta 
+        property="og:article:author" 
+        content="Azitide">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="技巧手册">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Azitide</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          有意思的分享
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Azitide</p>
+<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>19</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>12</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3493127809665596?spm_id_from=333.1296.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="mailto:gan.zicheng@foxmail.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/gzcnb">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ROS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8"><span class="toc-text">ROS命令行大全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8A%82%E7%82%B9%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">1.节点工具命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%9D%E9%A2%98%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">2.话题工具命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">3.服务工具命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-rosparam"><span class="toc-text">3.1 rosparam</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-msg%E5%92%8Csrv"><span class="toc-text">4.msg和srv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BD%95%E5%88%B6%E5%92%8C%E5%9B%9E%E6%94%BE%E6%95%B0%E6%8D%AEbag%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">5.录制和回放数据bag命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-text">6.系统与软件包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%8C%85%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">消息包的类型：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%BB%BF%E7%9C%9F"><span class="toc-text">7.仿真</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gmapping%E5%BB%BA%E5%9B%BE"><span class="toc-text">gmapping建图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%8F%91%E5%B8%83%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AF%9D%E9%A2%98"><span class="toc-text">一般发布类型的话题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-text">依赖项</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF/">
+        <div class="categories-list-item">
+          前端
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/">
+        <div class="categories-list-item">
+          小白知识
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/ROS/">
+        <div class="categories-list-item">
+          ROS
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+        <div class="categories-list-item">
+          服务器
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+        title="安装教程">
+        <div class="tags-list-item">安装教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E7%BD%91%E9%A1%B5/" 
+        title="网页">
+        <div class="tags-list-item">网页</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+        title="技巧手册">
+        <div class="tags-list-item">技巧手册</div>
+      </a>
+    
+      <a 
+        href="/tags/html/" 
+        title="html">
+        <div class="tags-list-item">html</div>
+      </a>
+    
+      <a 
+        href="/tags/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" 
+        title="使用教程">
+        <div class="tags-list-item">使用教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%A1%86%E6%9E%B6/" 
+        title="框架">
+        <div class="tags-list-item">框架</div>
+      </a>
+    
+      <a 
+        href="/tags/VUE/" 
+        title="VUE">
+        <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/Node-js/" 
+        title="Node.js">
+        <div class="tags-list-item">Node.js</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/JavaScript/" 
+        title="JavaScript">
+        <div class="tags-list-item">JavaScript</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      ROS基本工具命令行大全(概括)
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-08-11T02:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-08-11</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/ROS/" 
+          class="post-meta-link">
+          ROS
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.3k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+            class="post-meta-link">
+            技巧手册
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="ROS命令行大全"><a href="#ROS命令行大全" class="headerlink" title="ROS命令行大全"></a>ROS命令行大全</h1><h4 id="1-节点工具命令行"><a href="#1-节点工具命令行" class="headerlink" title="1.节点工具命令行"></a>1.节点工具命令行</h4><table>
+<thead>
+<tr>
+<th>命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>roscore</td>
+<td>运行ROS核心</td>
+</tr>
+<tr>
+<td>rosrun “软件包” “节点程序”</td>
+<td>通过软件包找到程序去运行</td>
+</tr>
+<tr>
+<td>rosnode list</td>
+<td>查看在运行的节点</td>
+</tr>
+<tr>
+<td>roscd</td>
+<td>通过包名进去到所在目录</td>
+</tr>
+<tr>
+<td>rospack</td>
+<td>获取软件包的有关信息，加上find可以查看路径</td>
+</tr>
+<tr>
+<td>rosls</td>
+<td>通过包名显示所在目录的文件</td>
+</tr>
+<tr>
+<td>rosed</td>
+<td>通过包名找到程序并打开编辑器，默认是vim,可以更换编辑器</td>
+</tr>
+<tr>
+<td>roslaunch</td>
+<td>可以用来启动定义在<code>launch（启动）</code>文件中的节点</td>
+</tr>
+</tbody></table>
+<ul>
+<li>使用重映射参数来改变节点名称：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">$ rosrun turtlesim turtlesim_node __name:&#x3D;my_turtle</code></pre>
+
+<h4 id="2-话题工具命令行"><a href="#2-话题工具命令行" class="headerlink" title="2.话题工具命令行"></a>2.话题工具命令行</h4><table>
+<thead>
+<tr>
+<th>命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rosrun rqt_graph rqt_graph</td>
+<td>打开节点程序，查看话题和节点之间的<strong>通信关系</strong></td>
+</tr>
+<tr>
+<td>rostopic list</td>
+<td>列出当前已被订阅和发布的所有话题，加上空格后使用-v可以查看分类</td>
+</tr>
+<tr>
+<td>rostopic echo “话题”</td>
+<td>显示在某个话题上发布的数据</td>
+</tr>
+<tr>
+<td>rostopic type “话题”</td>
+<td>查看所发布<strong>话题的消息类型</strong></td>
+</tr>
+<tr>
+<td>rostopic pub</td>
+<td>将数据发布到当前某个<strong>正在运行广播的话题</strong></td>
+</tr>
+<tr>
+<td>rostopic hz</td>
+<td>查看话题数据<strong>发布的速率</strong>。</td>
+</tr>
+<tr>
+<td>rqt_plot</td>
+<td>在滚动时间图上显示发布到<strong>某个话题上的数据</strong></td>
+</tr>
+</tbody></table>
+<p><strong>注</strong>：“话题”是指在ros中的话题名称</p>
+<p>详情：<a href="https://azitide.github.io/post/ROSrumen.html#5-%E8%AF%9D%E9%A2%98">话题工具</a></p>
+<h4 id="3-服务工具命令行"><a href="#3-服务工具命令行" class="headerlink" title="3.服务工具命令行"></a>3.服务工具命令行</h4><table>
+<thead>
+<tr>
+<th align="left">命令行</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rosservice list</td>
+<td align="left"><strong>列出正在活跃服务</strong>的信息</td>
+</tr>
+<tr>
+<td align="left">rosservic call</td>
+<td align="left">用给定的<strong>参数调用服务</strong></td>
+</tr>
+<tr>
+<td align="left">rosservice type “服务”</td>
+<td align="left">查看 <strong>服务的消息类型</strong></td>
+</tr>
+<tr>
+<td align="left">rosservice find “服务的消息类型”</td>
+<td align="left">按照<strong>服务类型查找服务</strong></td>
+</tr>
+<tr>
+<td align="left">rosservice uri</td>
+<td align="left">查看服务的ROSRPC <strong>uri</strong></td>
+</tr>
+</tbody></table>
+<p><strong>注</strong>：”服务”是指在ros中的服务名称。</p>
+<p><strong>uri</strong>：节点程序的服务的统一资源定位符或者说是地址。</p>
+<h5 id="3-1-rosparam"><a href="#3-1-rosparam" class="headerlink" title="3.1 rosparam"></a>3.1 rosparam</h5><ul>
+<li>能让我们在ROS[参数服务器Parameter Server]上<strong>存储和操作数据</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">命令行</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rosparam set</td>
+<td align="left"><strong>设置</strong>参数</td>
+</tr>
+<tr>
+<td align="left">rosparam get</td>
+<td align="left"><strong>获取</strong>参数</td>
+</tr>
+<tr>
+<td align="left">rosparam load</td>
+<td align="left">从文件中<strong>加载</strong>参数</td>
+</tr>
+<tr>
+<td align="left">rosparam dump</td>
+<td align="left">向文件中<strong>转储</strong>参数</td>
+</tr>
+<tr>
+<td align="left">rosparam delete</td>
+<td align="left"><strong>删除</strong>参数</td>
+</tr>
+<tr>
+<td align="left">rosparam list</td>
+<td align="left"><strong>列出</strong>参数名</td>
+</tr>
+</tbody></table>
+<h4 id="4-msg和srv"><a href="#4-msg和srv" class="headerlink" title="4.msg和srv"></a>4.msg和srv</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/msg">msg</a>（消息）：msg文件就是文本文件，用于描述ROS<strong>消息</strong>的字段。它们用于为不同编程语言编写的消息生成源代码。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/srv">srv</a>（服务）：一个srv文件描述一个<strong>服务</strong>。它由两部分组成：请求（request）和响应（response）。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rosmsg -h</td>
+<td>列出可以<strong>显示消息的消息类型</strong>工具命令行</td>
+</tr>
+<tr>
+<td>rossrv -h</td>
+<td>列出<strong>显示服务的消息类型</strong>工具命令行</td>
+</tr>
+</tbody></table>
+<pre class="line-numbers language-none"><code class="language-none">rossrv show 显示服务格式内容
+rossrv list 显示服务列表
+rossrv package 显示指定包中的所有服务列表
+rossrv packages 显示所有带有服务的包的列表
+rossrv md5 显示指定服务类型的 md5 总和</code></pre>
+
+<h4 id="5-录制和回放数据bag命令行"><a href="#5-录制和回放数据bag命令行" class="headerlink" title="5.录制和回放数据bag命令行"></a>5.录制和回放数据bag命令行</h4><table>
+<thead>
+<tr>
+<th>命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rosbag record -a</td>
+<td><strong>录制所有话题</strong>，所有发布的话题都应该积累在一个bag文件中</td>
+</tr>
+<tr>
+<td>rosbag info “bag文件”</td>
+<td>执行<strong>info</strong>命令检查bag文件的内容而不回放它</td>
+</tr>
+<tr>
+<td>rosbag play “bag文件”</td>
+<td><strong>回放</strong>bag文件</td>
+</tr>
+<tr>
+<td>rosbag record -O subset “话题1”</td>
+<td><strong>录制指定</strong>话题</td>
+</tr>
+<tr>
+<td>time rosbag info “bag文件”</td>
+<td>手动检查所有已发布的话题，<strong>查看发布了多少信息</strong></td>
+</tr>
+<tr>
+<td>time rosbag play –immediate demo.bag –topics “话题”</td>
+<td>使用<code>--immediate</code>选项 回放文件，他就只会<strong>发布我们指定的话题</strong></td>
+</tr>
+</tbody></table>
+<p>详情：<a href="https://azitide.github.io/post/ROSrumen.html#11-%E5%BD%95%E5%88%B6%E5%92%8C%E5%9B%9E%E6%94%BE%E6%95%B0%E6%8D%AE%EF%BC%88bag%E6%96%87%E4%BB%B6%EF%BC%89">bag使用方法</a></p>
+<h4 id="6-系统与软件包"><a href="#6-系统与软件包" class="headerlink" title="6.系统与软件包"></a>6.系统与软件包</h4><table>
+<thead>
+<tr>
+<th align="left">命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">roswtf</td>
+<td><strong>检查</strong>ROS系统错误、话题与节点的错误</td>
+</tr>
+<tr>
+<td align="left">rosdep install “软件包”</td>
+<td>安装ROS 软件包所需要的<strong>系统依赖项</strong></td>
+</tr>
+<tr>
+<td align="left">.&#x2F;install_for_noetic.ch</td>
+<td>安装<strong>软件包依赖项</strong></td>
+</tr>
+<tr>
+<td align="left">catkin_create_pkg “软件包名” roscpp rospy</td>
+<td><strong>创建软件包</strong>，roscpp等为所需依赖项</td>
+</tr>
+<tr>
+<td align="left">catkin_make</td>
+<td>到工作空间里，去重新<strong>编译软件包</strong></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>c++程序<strong>每次</strong>修改后都需要回到工作空间<strong>编译</strong>，catkin_make</p>
+<p>python程序则只需要<strong>增加一次可执行文件权限</strong>即可，chmod +x “python文件”</p>
+<h5 id="消息包的类型："><a href="#消息包的类型：" class="headerlink" title="消息包的类型："></a>消息包的类型：</h5><p><a target="_blank" rel="noopener" href="https://www.edrawsoft.cn/viewer/public/s/858ac382469902">https://www.edrawsoft.cn/viewer/public/s/858ac382469902</a> （谷歌游览器打开）</p>
+<h4 id="7-仿真"><a href="#7-仿真" class="headerlink" title="7.仿真"></a>7.仿真</h4><table>
+<thead>
+<tr>
+<th>命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gazebo</td>
+<td><strong>启动Gazebo仿真</strong>，在新版的ros已经嵌入 ，无需下载</td>
+</tr>
+<tr>
+<td>rqt_robot_steering</td>
+<td>图形化<strong>速度调节器</strong>，控制机器人移动速度</td>
+</tr>
+<tr>
+<td>rviz</td>
+<td><strong>可视化雷达工具</strong></td>
+</tr>
+<tr>
+<td>rqt_console</td>
+<td>&amp;<strong>查看节点日志</strong>信息</td>
+</tr>
+<tr>
+<td>rqt_logger_level</td>
+<td>&amp;<strong>改变</strong>查看节点日志信息的<strong>详细级别</strong></td>
+</tr>
+</tbody></table>
+<h5 id="gmapping建图"><a href="#gmapping建图" class="headerlink" title="gmapping建图"></a>gmapping建图</h5><table>
+<thead>
+<tr>
+<th>命令行</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rosrun rqt_tf_tree rqt_tf_tree</td>
+<td>查看<strong>tf树</strong></td>
+</tr>
+<tr>
+<td>rosrun gmapping slam_gmapping</td>
+<td><strong>启动</strong>建图节点</td>
+</tr>
+<tr>
+<td>rosrun wap_server map_saver -f “文件名”</td>
+<td><strong>保存</strong>地图文件，生成图片和一个yaml文件</td>
+</tr>
+<tr>
+<td>rosrun map_server map_server “yaml文件”</td>
+<td><strong>加载</strong>地图文件</td>
+</tr>
+</tbody></table>
+<h5 id="一般发布类型的话题"><a href="#一般发布类型的话题" class="headerlink" title="一般发布类型的话题"></a>一般发布类型的话题</h5><table>
+<thead>
+<tr>
+<th>话题</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;scan</td>
+<td><strong>雷达</strong>数据发布话题</td>
+</tr>
+<tr>
+<td>&#x2F;map</td>
+<td><strong>地图</strong>数据发布话题</td>
+</tr>
+<tr>
+<td>&#x2F;tf</td>
+<td><strong>坐标系数据</strong>转换的话题</td>
+</tr>
+<tr>
+<td>&#x2F;cmd_vel</td>
+<td>机器人<strong>移动发布话题</strong></td>
+</tr>
+<tr>
+<td>&#x2F;imu&#x2F;data</td>
+<td>机器人的<strong>姿态发布话题</strong></td>
+</tr>
+</tbody></table>
+<h5 id="依赖项"><a href="#依赖项" class="headerlink" title="依赖项"></a>依赖项</h5><table>
+<thead>
+<tr>
+<th>依赖项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>roscpp</td>
+<td>**c++**的程序支持</td>
+</tr>
+<tr>
+<td>rospy</td>
+<td><strong>python</strong>的程序支持</td>
+</tr>
+<tr>
+<td>sensor_msgs</td>
+<td><strong>传感器消息类型</strong>的消息包</td>
+</tr>
+<tr>
+<td>std_msgs</td>
+<td><strong>基本数据类型</strong>的消息包</td>
+</tr>
+<tr>
+<td>nav_msgs</td>
+<td><strong>地图数据类型</strong>的消息包</td>
+</tr>
+</tbody></table>
+<p>笔者于2023年8月7号，第一次写下，后续会完善！</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-danger copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Azitide
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://azitide.github.io/post/ROSshouce.html">
+            http://azitide.github.io/post/ROSshouce.html
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/post/LuJing.html" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">编程的基本路径-绝对路径与相对路径的使用 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/post/ROSrumen.html" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">ROS入门基础教程 - (快速版) </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'oe6x40wPhI0la0n7kuTarYk7-MdYXbMMI',
+        appKey: 'z7OSXleHLklmBjXu31qDhCF2',
+        placeholder: '欢迎评论！有问题或需求，看到回的，打开下面表情旁边的文本看到评论。',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ROS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8"><span class="toc-text">ROS命令行大全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8A%82%E7%82%B9%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">1.节点工具命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%9D%E9%A2%98%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">2.话题工具命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">3.服务工具命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-rosparam"><span class="toc-text">3.1 rosparam</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-msg%E5%92%8Csrv"><span class="toc-text">4.msg和srv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BD%95%E5%88%B6%E5%92%8C%E5%9B%9E%E6%94%BE%E6%95%B0%E6%8D%AEbag%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">5.录制和回放数据bag命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-text">6.系统与软件包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%8C%85%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">消息包的类型：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%BB%BF%E7%9C%9F"><span class="toc-text">7.仿真</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gmapping%E5%BB%BA%E5%9B%BE"><span class="toc-text">gmapping建图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%8F%91%E5%B8%83%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AF%9D%E9%A2%98"><span class="toc-text">一般发布类型的话题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-text">依赖项</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+</div>
+
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ROS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8"><span class="toc-text">ROS命令行大全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8A%82%E7%82%B9%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">1.节点工具命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%9D%E9%A2%98%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">2.话题工具命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">3.服务工具命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-rosparam"><span class="toc-text">3.1 rosparam</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-msg%E5%92%8Csrv"><span class="toc-text">4.msg和srv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BD%95%E5%88%B6%E5%92%8C%E5%9B%9E%E6%94%BE%E6%95%B0%E6%8D%AEbag%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">5.录制和回放数据bag命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-text">6.系统与软件包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%8C%85%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">消息包的类型：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%BB%BF%E7%9C%9F"><span class="toc-text">7.仿真</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gmapping%E5%BB%BA%E5%9B%BE"><span class="toc-text">gmapping建图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%8F%91%E5%B8%83%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AF%9D%E9%A2%98"><span class="toc-text">一般发布类型的话题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-text">依赖项</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-12-31</div>
+        <a href="/post/ubuntu_ROS_shoudong.html"><div class="recent-posts-item-content">ubuntu系统安装ROS（手动版）</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-11-28</div>
+        <a href="/post/baocunjingxiang.html"><div class="recent-posts-item-content">Ubuntu备份自定义镜像 --我的目的：保存ROS环境</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-10-31</div>
+        <a href="/post/ruanjian.html"><div class="recent-posts-item-content">小白知识--电脑的生产力与性能完美级调试</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-09-28</div>
+        <a href="/post/ROSfanyi.html"><div class="recent-posts-item-content">ROS包编译时遇到报错,直接解决90%的问题？</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2023-6-1
+          
+          
+                - 
+                2024
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Azitide
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+      <div class="BbeiAn-info">
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 啊梓提的 </a>
+      </div>
+      
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>

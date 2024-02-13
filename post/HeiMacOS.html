@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>黑苹果系统虚拟机安装&PC物理电脑安装</title>
+  
+
+  
+    
+      <meta 
+        property="og:title" 
+        content="黑苹果系统虚拟机安装&amp;PC物理电脑安装">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://azitide.github.io/post/HeiMacOS.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-08-25">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-10-12">
+      <meta 
+        property="og:article:author" 
+        content="Azitide">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="安装教程">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Azitide</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          有意思的分享
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Azitide</p>
+<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>19</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>12</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3493127809665596?spm_id_from=333.1296.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="mailto:gan.zicheng@foxmail.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/gzcnb">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9A"><span class="toc-text">虚拟机：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">环境：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%EF%BC%88ISO%E6%98%AF%E5%BC%95%E5%AF%BC%E5%BC%8F%E9%95%9C%E5%83%8F%EF%BC%89%E4%B8%8B%E8%BD%BD%EF%BC%9A"><span class="toc-text">镜像（ISO是引导式镜像）下载：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%AF%AD%E8%A8%80-%E9%80%89%E6%8B%A9%E4%B8%AD%E6%96%87%EF%BC%88%E7%AE%80%E4%BD%93%EF%BC%89"><span class="toc-text">第一步语言 - 选择中文（简体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-text">第二步：一些配置问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PC%E7%94%B5%E8%84%91%E8%A3%85%E9%BB%91%E8%8B%B9%E6%9E%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">PC电脑装黑苹果系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A-1"><span class="toc-text">环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="toc-text">镜像：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E5%85%AC%E4%BC%97%E5%8F%B7%E7%9A%84%E4%B8%BB%E9%A1%B5%E6%90%9C%E7%B4%A2%E6%96%87%E7%AB%A0"><span class="toc-text">1.打开公众号的主页搜索文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%90%9C%E2%80%9D-10-15-7-%E2%80%9C%EF%BC%8C%E6%8A%8A%E6%97%A5%E6%9C%9F%E6%94%B9%E4%B8%BA2020%E5%B9%B4%E7%9A%84"><span class="toc-text">2.搜” 10.15.7 “，把日期改为2020年的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E7%82%B9%E8%BF%9B%E5%8E%BB%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0-%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0%E6%98%AF10-15-7%E7%9A%84%E8%8B%B9%E6%9E%9C%E9%95%9C%E5%83%8F%E7%89%88%E6%9C%AC%EF%BC%8C%E6%98%AF%E8%8B%B9%E6%9E%9C%E7%9B%AE%E5%89%8D%E6%9C%80%E7%A8%B3%E5%AE%9A%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.点进去这个文章,这个文章是10.15.7的苹果镜像版本，是苹果目前最稳定的系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%95%E5%85%A5"><span class="toc-text">录入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EFI%E6%96%87%E4%BB%B6"><span class="toc-text">EFI文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2EFI%EF%BC%9A"><span class="toc-text">替换EFI：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="toc-text">系统安装：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E6%94%AF%E6%8C%81"><span class="toc-text">资料支持</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF/">
+        <div class="categories-list-item">
+          前端
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/">
+        <div class="categories-list-item">
+          小白知识
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/ROS/">
+        <div class="categories-list-item">
+          ROS
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+        <div class="categories-list-item">
+          服务器
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+        title="安装教程">
+        <div class="tags-list-item">安装教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E7%BD%91%E9%A1%B5/" 
+        title="网页">
+        <div class="tags-list-item">网页</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+        title="技巧手册">
+        <div class="tags-list-item">技巧手册</div>
+      </a>
+    
+      <a 
+        href="/tags/html/" 
+        title="html">
+        <div class="tags-list-item">html</div>
+      </a>
+    
+      <a 
+        href="/tags/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" 
+        title="使用教程">
+        <div class="tags-list-item">使用教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%A1%86%E6%9E%B6/" 
+        title="框架">
+        <div class="tags-list-item">框架</div>
+      </a>
+    
+      <a 
+        href="/tags/VUE/" 
+        title="VUE">
+        <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/Node-js/" 
+        title="Node.js">
+        <div class="tags-list-item">Node.js</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/JavaScript/" 
+        title="JavaScript">
+        <div class="tags-list-item">JavaScript</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      黑苹果系统虚拟机安装&amp;PC物理电脑安装
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-08-25T13:25:31.856Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-08-25</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/" 
+          class="post-meta-link">
+          小白知识
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.4k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+            class="post-meta-link">
+            安装教程
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <ul>
+<li>什么是黑苹果？</li>
+</ul>
+<p>简单的说是非苹果电脑，可以运行苹果的macOS操作系统和与之相关的应用程序</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%BB%91%E8%8B%B9%E6%9E%9C/5220943">黑苹果（操作系统）_百度百科 (baidu.com)</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>笔者，在偶然时发现这个东东，觉得有趣便搞来玩玩，起初发现啊虚拟机是VM的，我的是16版本的在安装镜像时，发现虚拟机此时不支持Apple Mac OS系统，去网上搜发现需要去替换掉VM里的文件让他支持苹果镜像，但是我虚拟机有重要资料，怕有丢失，所以我选择了更新虚拟机到17版本也是自然支持的，安装也成功了，但是后面我有一台笔记本，我就改造一番，但是物理机的系统安装远比我想象的困难许多，搞了一个多星期才搞定的，搞定后，发现有些驱动还用不了，只能不断更换EFI文件再重装才搞定。想折腾的话，可以去搞下物理机，只想玩玩的话，用虚拟机安装就可以了！</p>
+<h2 id="虚拟机："><a href="#虚拟机：" class="headerlink" title="虚拟机："></a>虚拟机：</h2><h3 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h3><ul>
+<li>VMware17pro 虚拟机（更新到17版本才会支持MacOS苹果系统）</li>
+</ul>
+<h5 id="镜像（ISO是引导式镜像）下载："><a href="#镜像（ISO是引导式镜像）下载：" class="headerlink" title="镜像（ISO是引导式镜像）下载："></a>镜像（ISO是引导式镜像）下载：</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ittel.cn/archives/18600.html">macOS Catalina 10.15.0-10.15.7 (19H15) 正式版镜像&amp;虚拟机ISO镜像下载 (ittel.cn)</a></li>
+</ul>
+<p>安装步骤：</p>
+<ul>
+<li><p><a href="https://azitide.github.io/post/ubuntu_index.html#%E5%BC%80%E5%A7%8B">虚拟机安装ubuntu系统 -文章</a></p>
+</li>
+<li><p>跟ubuntu安装一样，只有第四步-变成：选择客户机系统选择成：Apple Mac OS</p>
+</li>
+</ul>
+<p>虚拟机设置完成后</p>
+<ul>
+<li>点击再次开启此虚拟机，等待一会儿，就能看到苹果的logo</li>
+</ul>
+<h4 id="第一步语言-选择中文（简体）"><a href="#第一步语言-选择中文（简体）" class="headerlink" title="第一步语言 - 选择中文（简体）"></a>第一步语言 - 选择中文（简体）</h4><ol>
+<li>macos实用工具跳出，点击磁盘工具，进去后把VM开头的磁盘（最大的磁盘）抹掉</li>
+<li>点击左上角红色的叉叉按钮。回到实用工具，点击安装macos</li>
+<li>等进度条完成就可以设置个性化了，随便设置就好，如·联网、登录AppleI D等先不设置 直接跳过</li>
+</ol>
+<h4 id="第二步：一些配置问题"><a href="#第二步：一些配置问题" class="headerlink" title="第二步：一些配置问题"></a>第二步：一些配置问题</h4><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/598806346">Windows电脑使用虚拟机安装MacOS(黑苹果)完美教程(AMD亲测也可用+解决分辨率全屏)</a></p>
+<p>看一下比较详细的，但是资料就不要问了，注意上当受骗！</p>
+<h2 id="PC电脑装黑苹果系统："><a href="#PC电脑装黑苹果系统：" class="headerlink" title="PC电脑装黑苹果系统："></a>PC电脑装黑苹果系统：</h2><p>在PC物理环境下安装原生的MacOS系统，需要都通过OC引导（ OpenCore ）来欺骗MacOS系统你这个电脑是苹果硬件才能安装，因为每个人的电脑硬件都不一样，所以OC引导需要一个为你的电脑硬件定制的EFI文件，去让Mac系统完美适配你的电脑</p>
+<h3 id="环境：-1"><a href="#环境：-1" class="headerlink" title="环境："></a>环境：</h3><p>所需工具：</p>
+<p>balenaEtcher（录入镜像）：<a target="_blank" rel="noopener" href="https://etcher.balena.io/">https://etcher.balena.io/</a></p>
+<p>EFI文件：<a target="_blank" rel="noopener" href="https://github.com/daliansky/Hackintosh/">https://github.com/daliansky/Hackintosh/</a></p>
+<p>diskgenius（分区软件）：<a target="_blank" rel="noopener" href="https://www.diskgenius.cn/">https://www.diskgenius.cn/</a></p>
+<p>U盘：32G以上</p>
+<h3 id="镜像："><a href="#镜像：" class="headerlink" title="镜像："></a>镜像：</h3><ul>
+<li>镜像下载之前，最好是先找到适合自己的EFI文件！</li>
+</ul>
+<p>下载：</p>
+<p>我们去微信公众号搜索“黑果小兵的部落阁”，下载别人弄好过的镜像文件，我们只需更换EFI文件即可使用了:</p>
+<h5 id="1-打开公众号的主页搜索文章"><a href="#1-打开公众号的主页搜索文章" class="headerlink" title="1.打开公众号的主页搜索文章"></a>1.打开公众号的主页搜索文章</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/piSQVdH"><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/12/piSQVdH.png" class="lozad post-image"src="https://z1.ax1x.com/2023/10/12/piSQVdH.png"></a></p>
+<h5 id="2-搜”-10-15-7-“，把日期改为2020年的"><a href="#2-搜”-10-15-7-“，把日期改为2020年的" class="headerlink" title="2.搜” 10.15.7 “，把日期改为2020年的"></a>2.搜” 10.15.7 “，把日期改为2020年的</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/piSQnJI"><img src="https://z1.ax1x.com/2023/10/12/piSQnJI.png" alt="piSQnJI.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/12/piSQnJI.png" class="lozad post-image"></a></p>
+<h5 id="3-点进去这个文章-这个文章是10-15-7的苹果镜像版本，是苹果目前最稳定的系统"><a href="#3-点进去这个文章-这个文章是10-15-7的苹果镜像版本，是苹果目前最稳定的系统" class="headerlink" title="3.点进去这个文章,这个文章是10.15.7的苹果镜像版本，是苹果目前最稳定的系统"></a>3.点进去这个文章,这个文章是10.15.7的苹果镜像版本，是苹果目前最稳定的系统</h5><p>点击给</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piSQ8eg"><img src="https://z1.ax1x.com/2023/10/12/piSQ8eg.png" alt="piSQ8eg.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/12/piSQ8eg.png" class="lozad post-image"></a></p>
+<p>给作者个一块钱</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piSQBOU"><img src="https://z1.ax1x.com/2023/10/12/piSQBOU.png" alt="piSQBOU.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/12/piSQBOU.png" class="lozad post-image"></a></p>
+<p>回到公众号发消息哪里，就会给你发网盘连接了，跟着下载就行了！</p>
+<h3 id="录入"><a href="#录入" class="headerlink" title="录入"></a>录入</h3><p>U盘插上带，使用管理员权限打开etcher录入工具，选择下载好的镜像，选择U盘，点击Flash即可，<strong>完成后请直接关闭软件</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piSQsw4"><img src="https://z1.ax1x.com/2023/10/12/piSQsw4.png" alt="piSQsw4.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/12/piSQsw4.png" class="lozad post-image"></a></p>
+<h3 id="EFI文件"><a href="#EFI文件" class="headerlink" title="EFI文件"></a>EFI文件</h3><p>去网址寻找自己同型号的的EFI，下载回来，如没有请自行解决（网上再找找吧，不行的话，最好自己写，去国光看看，比较麻烦。如果想要简单的话，去淘宝花钱买吧）</p>
+<ul>
+<li>EFI文件网址：<a target="_blank" rel="noopener" href="https://github.com/daliansky/Hackintosh/">https://github.com/daliansky/Hackintosh/</a></li>
+</ul>
+<p>EFI知识：</p>
+<p><a target="_blank" rel="noopener" href="https://apple.sqlsec.com/4-OC%E9%85%8D%E7%BD%AE/4-1/">ACPI - 国光的黑苹果安装教程：手把手教你配置 OpenCore (sqlsec.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html#prerequisites">OC核心安装指南 (dortania.github.io)</a></p>
+<pre class="line-numbers language-none"><code class="language-none">什么是EFI：https:&#x2F;&#x2F;post.smzdm.com&#x2F;p&#x2F;a9gvx9p5&#x2F;
+简单来说就是能让硬件支持MacOS系统！</code></pre>
+
+<h3 id="替换EFI："><a href="#替换EFI：" class="headerlink" title="替换EFI："></a>替换EFI：</h3><p>1.打开diskgenius（分区软件），找到这个已经录入好镜像的U盘，点击进去</p>
+<ul>
+<li>我这个镜像文件有4个文件夹一个镜像文件，三个引导文件（EFI是四叶草、OC是OC引导，这是最新的，（文件多少个，无所谓电脑有一个引导就可以安装了。</li>
+</ul>
+<p>2.找到OC这个文件夹进去，进去就会看到两个文件夹，其中一个就是EFI，<strong>把下载下来的这个EFI，替换上去即可</strong></p>
+<h3 id="系统安装："><a href="#系统安装：" class="headerlink" title="系统安装："></a>系统安装：</h3><p>1.重启你要安装的电脑，按快捷键进去blos面板（品牌电脑或主板，自行百度快捷键）</p>
+<p>2.找到启动项，改为UEFIU盘启动的顺序为第一启动项，还要关闭安全启动。</p>
+<p>3.插入U盘，启动电脑，进去就会是OC引导，选择Boot OS X Install from XiaoMiPro（可能有点不一样，看出是安装镜像的选项就行了），等待代码跑完，就会出现苹果的logo了，等进度条完成向上面一样安装就行了</p>
+<h4 id="资料支持"><a href="#资料支持" class="headerlink" title="资料支持"></a>资料支持</h4><p>[【黑果小兵】macOS Catalina 10.15.7 19H15 正式版 with Clover 5127原版镜像<a target="_blank" rel="noopener" href="https://blog.daliansky.net/macOS-Catalina-10.15.7-19H2-Release-version-with-Clover-5122-original-image-Double-EFI-Version-UEFI-and-MBR.html">双EFI版][UEFI and MBR] | 黑果小兵的部落阁 (daliansky.net)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.daliansky.net/MacOS-installation-tutorial-XiaoMi-Pro-installation-process-records.html">macOS安装教程兼小米Pro安装过程记录 | 黑果小兵的部落阁 (daliansky.net)</a></p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-danger copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Azitide
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://azitide.github.io/post/HeiMacOS.html">
+            http://azitide.github.io/post/HeiMacOS.html
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/post/ROSfanyi.html" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">ROS包编译时遇到报错,直接解决90%的问题？ </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/post/LuJing.html" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">编程的基本路径-绝对路径与相对路径的使用 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'oe6x40wPhI0la0n7kuTarYk7-MdYXbMMI',
+        appKey: 'z7OSXleHLklmBjXu31qDhCF2',
+        placeholder: '欢迎评论！有问题或需求，看到回的，打开下面表情旁边的文本看到评论。',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9A"><span class="toc-text">虚拟机：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">环境：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%EF%BC%88ISO%E6%98%AF%E5%BC%95%E5%AF%BC%E5%BC%8F%E9%95%9C%E5%83%8F%EF%BC%89%E4%B8%8B%E8%BD%BD%EF%BC%9A"><span class="toc-text">镜像（ISO是引导式镜像）下载：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%AF%AD%E8%A8%80-%E9%80%89%E6%8B%A9%E4%B8%AD%E6%96%87%EF%BC%88%E7%AE%80%E4%BD%93%EF%BC%89"><span class="toc-text">第一步语言 - 选择中文（简体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-text">第二步：一些配置问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PC%E7%94%B5%E8%84%91%E8%A3%85%E9%BB%91%E8%8B%B9%E6%9E%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">PC电脑装黑苹果系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A-1"><span class="toc-text">环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="toc-text">镜像：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E5%85%AC%E4%BC%97%E5%8F%B7%E7%9A%84%E4%B8%BB%E9%A1%B5%E6%90%9C%E7%B4%A2%E6%96%87%E7%AB%A0"><span class="toc-text">1.打开公众号的主页搜索文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%90%9C%E2%80%9D-10-15-7-%E2%80%9C%EF%BC%8C%E6%8A%8A%E6%97%A5%E6%9C%9F%E6%94%B9%E4%B8%BA2020%E5%B9%B4%E7%9A%84"><span class="toc-text">2.搜” 10.15.7 “，把日期改为2020年的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E7%82%B9%E8%BF%9B%E5%8E%BB%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0-%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0%E6%98%AF10-15-7%E7%9A%84%E8%8B%B9%E6%9E%9C%E9%95%9C%E5%83%8F%E7%89%88%E6%9C%AC%EF%BC%8C%E6%98%AF%E8%8B%B9%E6%9E%9C%E7%9B%AE%E5%89%8D%E6%9C%80%E7%A8%B3%E5%AE%9A%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.点进去这个文章,这个文章是10.15.7的苹果镜像版本，是苹果目前最稳定的系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%95%E5%85%A5"><span class="toc-text">录入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EFI%E6%96%87%E4%BB%B6"><span class="toc-text">EFI文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2EFI%EF%BC%9A"><span class="toc-text">替换EFI：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="toc-text">系统安装：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E6%94%AF%E6%8C%81"><span class="toc-text">资料支持</span></a></li></ol></li></ol></li></ol>
+</div>
+
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9A"><span class="toc-text">虚拟机：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">环境：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%EF%BC%88ISO%E6%98%AF%E5%BC%95%E5%AF%BC%E5%BC%8F%E9%95%9C%E5%83%8F%EF%BC%89%E4%B8%8B%E8%BD%BD%EF%BC%9A"><span class="toc-text">镜像（ISO是引导式镜像）下载：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%AF%AD%E8%A8%80-%E9%80%89%E6%8B%A9%E4%B8%AD%E6%96%87%EF%BC%88%E7%AE%80%E4%BD%93%EF%BC%89"><span class="toc-text">第一步语言 - 选择中文（简体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-text">第二步：一些配置问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PC%E7%94%B5%E8%84%91%E8%A3%85%E9%BB%91%E8%8B%B9%E6%9E%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">PC电脑装黑苹果系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A-1"><span class="toc-text">环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="toc-text">镜像：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E5%85%AC%E4%BC%97%E5%8F%B7%E7%9A%84%E4%B8%BB%E9%A1%B5%E6%90%9C%E7%B4%A2%E6%96%87%E7%AB%A0"><span class="toc-text">1.打开公众号的主页搜索文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%90%9C%E2%80%9D-10-15-7-%E2%80%9C%EF%BC%8C%E6%8A%8A%E6%97%A5%E6%9C%9F%E6%94%B9%E4%B8%BA2020%E5%B9%B4%E7%9A%84"><span class="toc-text">2.搜” 10.15.7 “，把日期改为2020年的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E7%82%B9%E8%BF%9B%E5%8E%BB%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0-%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0%E6%98%AF10-15-7%E7%9A%84%E8%8B%B9%E6%9E%9C%E9%95%9C%E5%83%8F%E7%89%88%E6%9C%AC%EF%BC%8C%E6%98%AF%E8%8B%B9%E6%9E%9C%E7%9B%AE%E5%89%8D%E6%9C%80%E7%A8%B3%E5%AE%9A%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.点进去这个文章,这个文章是10.15.7的苹果镜像版本，是苹果目前最稳定的系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%95%E5%85%A5"><span class="toc-text">录入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EFI%E6%96%87%E4%BB%B6"><span class="toc-text">EFI文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2EFI%EF%BC%9A"><span class="toc-text">替换EFI：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="toc-text">系统安装：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E6%94%AF%E6%8C%81"><span class="toc-text">资料支持</span></a></li></ol></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-12-31</div>
+        <a href="/post/ubuntu_ROS_shoudong.html"><div class="recent-posts-item-content">ubuntu系统安装ROS（手动版）</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-11-28</div>
+        <a href="/post/baocunjingxiang.html"><div class="recent-posts-item-content">Ubuntu备份自定义镜像 --我的目的：保存ROS环境</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-10-31</div>
+        <a href="/post/ruanjian.html"><div class="recent-posts-item-content">小白知识--电脑的生产力与性能完美级调试</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-09-28</div>
+        <a href="/post/ROSfanyi.html"><div class="recent-posts-item-content">ROS包编译时遇到报错,直接解决90%的问题？</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2023-6-1
+          
+          
+                - 
+                2024
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Azitide
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+      <div class="BbeiAn-info">
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 啊梓提的 </a>
+      </div>
+      
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>

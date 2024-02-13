@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>小白知识--电脑的生产力与性能完美级调试</title>
+  
+
+  
+    
+      <meta 
+        property="og:title" 
+        content="小白知识--电脑的生产力与性能完美级调试">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://azitide.github.io/post/ruanjian.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-10-31">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-10-31">
+      <meta 
+        property="og:article:author" 
+        content="Azitide">
+      
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Azitide</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          有意思的分享
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Azitide</p>
+<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>19</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>12</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3493127809665596?spm_id_from=333.1296.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="mailto:gan.zicheng@foxmail.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/gzcnb">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86%E2%80%93%E7%94%B5%E8%84%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E4%B8%8E%E6%80%A7%E8%83%BD%E5%AE%8C%E7%BE%8E%E7%BA%A7%E8%B0%83%E8%AF%95"><span class="toc-text">小白知识–电脑的生产力与性能完美级调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-text">性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HUO"><span class="toc-text">HUO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-text">管理自启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B9%E7%AA%97%E7%AE%A1%E7%90%86"><span class="toc-text">弹窗管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E5%8A%9B"><span class="toc-text">生产力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE%E7%BF%BB%E8%AF%91"><span class="toc-text">截图翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-text">截图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE%E8%AF%86%E5%AD%97"><span class="toc-text">截图识字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E8%A7%88%E5%99%A8%E9%80%82%E9%85%8D"><span class="toc-text">游览器适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E7%94%A8%EF%BC%9A"><span class="toc-text">好用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AdGuard-%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-text">AdGuard 广告拦截器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Convertio-%E4%B8%87%E8%83%BD%E6%A0%BC%E5%BC%8F%E8%BD%AC%E5%8C%96%E5%99%A8"><span class="toc-text">Convertio 万能格式转化器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDM%E4%B8%8B%E8%BD%BD%E5%99%A8-IDM-Integration-Module"><span class="toc-text">IDM下载器(IDM Integration Module)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Global-Speed-%E8%A7%86%E9%A2%91%E9%80%9F%E5%BA%A6%E6%8E%A7%E5%88%B6"><span class="toc-text">Global Speed: 视频速度控制</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF/">
+        <div class="categories-list-item">
+          前端
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/">
+        <div class="categories-list-item">
+          小白知识
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/ROS/">
+        <div class="categories-list-item">
+          ROS
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+        <div class="categories-list-item">
+          服务器
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" 
+        title="安装教程">
+        <div class="tags-list-item">安装教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E7%BD%91%E9%A1%B5/" 
+        title="网页">
+        <div class="tags-list-item">网页</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/" 
+        title="技巧手册">
+        <div class="tags-list-item">技巧手册</div>
+      </a>
+    
+      <a 
+        href="/tags/html/" 
+        title="html">
+        <div class="tags-list-item">html</div>
+      </a>
+    
+      <a 
+        href="/tags/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" 
+        title="使用教程">
+        <div class="tags-list-item">使用教程</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%A1%86%E6%9E%B6/" 
+        title="框架">
+        <div class="tags-list-item">框架</div>
+      </a>
+    
+      <a 
+        href="/tags/VUE/" 
+        title="VUE">
+        <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/Node-js/" 
+        title="Node.js">
+        <div class="tags-list-item">Node.js</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/JavaScript/" 
+        title="JavaScript">
+        <div class="tags-list-item">JavaScript</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      小白知识--电脑的生产力与性能完美级调试
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-10-31T02:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-10-31</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/" 
+          class="post-meta-link">
+          小白知识
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.1k 字</span>
+    
+  </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="小白知识–电脑的生产力与性能完美级调试"><a href="#小白知识–电脑的生产力与性能完美级调试" class="headerlink" title="小白知识–电脑的生产力与性能完美级调试"></a>小白知识–电脑的生产力与性能完美级调试</h1><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>增加虚拟内存，拉高内存上限，增强电脑性能–加载速度（需要硬盘有多余空间）</p>
+<p>教程<br><strong>基本一样，只是win10与win11的位置不一样，我的建议直接搜：性能</strong></p>
+<p>win10：右键我的电脑–属性–高级系统设置–标签中选择高级–性能设置–高级–虚拟内存更改–在选择想要移动的盘符–选择–自定义大小–设置–确定–应用</p>
+<p>1024 &#x3D;&#x3D; 1GB</p>
+<p>win11：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pin60BD"><img src="https://z1.ax1x.com/2023/10/31/pin60BD.png" alt="pin60BD.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/31/pin60BD.png" class="lozad post-image"></a></p>
+<h4 id="HUO"><a href="#HUO" class="headerlink" title="HUO"></a>HUO</h4><p>电脑开机的第一步：应该是等待自启动的软件与插件启动完成，这个时间都够我背一个”两只老虎爱跳舞，一只没有…咳咳”,说一下，火绒安全软件里面的安全工具非常好用</p>
+<h4 id="管理自启动"><a href="#管理自启动" class="headerlink" title="管理自启动"></a>管理自启动</h4><p>那么我们用火绒安全软件里面的<strong>安全工具—-启动项管理</strong>，就调整不需要的软件。</p>
+<h4 id="弹窗管理"><a href="#弹窗管理" class="headerlink" title="弹窗管理"></a>弹窗管理</h4><p>还有一些软件会弹窗一些xx广告出来，真的是”摸黑进厕所–找si“啊，在<strong>安全工具—-弹窗拦截</strong>，就可以关闭所有软件弹窗。</p>
+<p>官网下载<br><a target="_blank" rel="noopener" href="https://www.huorong.cn/">火绒安全 (huorong.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pinDqmQ"><img src="https://z1.ax1x.com/2023/10/31/pinDqmQ.png" alt="pinDqmQ.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/31/pinDqmQ.png" class="lozad post-image"></a></p>
+<h3 id="生产力"><a href="#生产力" class="headerlink" title="生产力"></a>生产力</h3><h4 id="截图翻译"><a href="#截图翻译" class="headerlink" title="截图翻译"></a>截图翻译</h4><p>我们在学习、工作时，大多时候都会是英文优先级很高，毕竟世界百分之90%的文献都是英文的，我们有时候难免看不懂，手机翻译就很累赘了，拍不清还翻译错了，为了防止”爆率是真的高“，我们最好还是用本机翻译，打开<strong>网易有道翻译–设置–快捷键位</strong>，就可以进行截图了</p>
+<p>官网下载<br><a target="_blank" rel="noopener" href="https://fanyi.youdao.com/download-Windows">网易有道翻译(youdao.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pinrzEd"><img src="https://z1.ax1x.com/2023/10/31/pinrzEd.png" alt="pinrzEd.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/31/pinrzEd.png" class="lozad post-image"></a></p>
+<h4 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h4><p>截图，市面上的载图软件参差不齐各有各有的特点，Q、微信那些又要登录真的麻烦，我一想用插件多好啊，又小又能自启动，又不用登录！</p>
+<p>一款名为「Snipaste」的截图软件，体积仅有 12M 。</p>
+<p>功能：快捷键自定义大小截图，固定截图在屏幕，截图上进行标注</p>
+<p>使用官网<br><a target="_blank" rel="noopener" href="https://zh.snipaste.com/">Snipaste - 截图 + 贴图</a></p>
+<p><strong>推荐下载</strong>：在微软商店直接搜名字，点击安装即可</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pins6VH"><img src="https://z1.ax1x.com/2023/10/31/pins6VH.png" alt="pins6VH.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/31/pins6VH.png" class="lozad post-image"></a></p>
+<h4 id="截图识字"><a href="#截图识字" class="headerlink" title="截图识字"></a>截图识字</h4><p>这个东西有好有坏，因为字体太多识别错字的几率也挺大的，我用过了很多的截图软件，如功能比较全的开源软件shareX，但是识别字体的正确率也比较低，我现在比较中意的还是微软官方出品了一个插件功能包增强版，识别到的字体正确率是我用过最高的—-Power Toys   ！     </p>
+<p><strong>Power Toys 设置–文本提取器–快捷键设置</strong></p>
+<p>官网：<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/powertoys/">Microsoft PowerToys | Microsoft Learn</a></p>
+<p>下载方法：在微软商店直接搜Power Toys，点击安装即可</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pinsjzV"><img src="https://z1.ax1x.com/2023/10/31/pinsjzV.png" alt="pinsjzV.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/31/pinsjzV.png" class="lozad post-image"></a></p>
+<h2 id="游览器适配"><a href="#游览器适配" class="headerlink" title="游览器适配"></a>游览器适配</h2><p>游览器插件的启用就是扩展最猛的功能，chrome、火狐相同的Chromium内核。尤其是强大的同步和扩展功能，<strong>能让你的浏览器瞬间开挂！</strong></p>
+<p>下面的插件适配：</p>
+<ul>
+<li><p>Edge游览器</p>
+</li>
+<li><p>谷歌游览器</p>
+</li>
+<li><p>火狐游览器</p>
+</li>
+</ul>
+<h3 id="好用："><a href="#好用：" class="headerlink" title="好用："></a>好用：</h3><ul>
+<li><h4 id="AdGuard-广告拦截器"><a href="#AdGuard-广告拦截器" class="headerlink" title="AdGuard 广告拦截器"></a>AdGuard 广告拦截器</h4></li>
+</ul>
+<p>AdGuard 广告拦截器可有效的拦截所有网页上的所有类型的广告，甚至是在 Facebook，Youtube 以及其它网站的广告！</p>
+<ul>
+<li><h4 id="Convertio-万能格式转化器"><a href="#Convertio-万能格式转化器" class="headerlink" title="Convertio 万能格式转化器"></a>Convertio 万能格式转化器</h4></li>
+</ul>
+<p>在线将文件从一种格式转换为另一种格式。支持超过 2500 种不同的转换:</p>
+<ul>
+<li><h4 id="IDM下载器-IDM-Integration-Module"><a href="#IDM下载器-IDM-Integration-Module" class="headerlink" title="IDM下载器(IDM Integration Module)"></a>IDM下载器(IDM Integration Module)</h4></li>
+</ul>
+<p>IDM不限速，最大支持32线程下载。支持网页视频、音乐、文件下载、自动捕获链接、自动识别文件名、批量下载、计划下载任务、站点抓取等。配和IDM软件使用。</p>
+<ul>
+<li><h4 id="Global-Speed-视频速度控制"><a href="#Global-Speed-视频速度控制" class="headerlink" title="Global Speed: 视频速度控制"></a>Global Speed: 视频速度控制</h4></li>
+</ul>
+<p>与几乎所有视频和音频流媒体站点兼容，包括Youtube，Netflix，哔哩哔哩，腾讯视频，百度网盘， 爱奇艺等。自定义播放速度，最大支持16倍倍速。</p>
+<p>插件推荐网站：<a target="_blank" rel="noopener" href="https://extfans.com/all/">Chrome插件扩展程序_扩展迷 (extfans.com)</a></p>
+<p>下载方法：<br>Edeg打开下方网址点击–获取–下载好后，打开拓展-点击启用</p>
+<p><a target="_blank" rel="noopener" href="https://microsoftedge.microsoft.com/addons?hl=zh-CN">Microsoft Edge Addons</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pinyOTH"><img src="https://z1.ax1x.com/2023/10/31/pinyOTH.png" alt="pinyOTH.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/10/31/pinyOTH.png" class="lozad post-image"></a></p>
+<p>这次的小白知识搞定了，会持——-续——-更新的啦！</p>
+<p>日期：2023年10月31日</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-danger copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Azitide
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://azitide.github.io/post/ruanjian.html">
+            http://azitide.github.io/post/ruanjian.html
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/post/baocunjingxiang.html" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">Ubuntu备份自定义镜像 --我的目的：保存ROS环境 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/post/ROSfanyi.html" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">ROS包编译时遇到报错,直接解决90%的问题？ </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'oe6x40wPhI0la0n7kuTarYk7-MdYXbMMI',
+        appKey: 'z7OSXleHLklmBjXu31qDhCF2',
+        placeholder: '欢迎评论！有问题或需求，看到回的，打开下面表情旁边的文本看到评论。',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86%E2%80%93%E7%94%B5%E8%84%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E4%B8%8E%E6%80%A7%E8%83%BD%E5%AE%8C%E7%BE%8E%E7%BA%A7%E8%B0%83%E8%AF%95"><span class="toc-text">小白知识–电脑的生产力与性能完美级调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-text">性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HUO"><span class="toc-text">HUO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-text">管理自启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B9%E7%AA%97%E7%AE%A1%E7%90%86"><span class="toc-text">弹窗管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E5%8A%9B"><span class="toc-text">生产力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE%E7%BF%BB%E8%AF%91"><span class="toc-text">截图翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-text">截图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE%E8%AF%86%E5%AD%97"><span class="toc-text">截图识字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E8%A7%88%E5%99%A8%E9%80%82%E9%85%8D"><span class="toc-text">游览器适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E7%94%A8%EF%BC%9A"><span class="toc-text">好用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AdGuard-%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-text">AdGuard 广告拦截器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Convertio-%E4%B8%87%E8%83%BD%E6%A0%BC%E5%BC%8F%E8%BD%AC%E5%8C%96%E5%99%A8"><span class="toc-text">Convertio 万能格式转化器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDM%E4%B8%8B%E8%BD%BD%E5%99%A8-IDM-Integration-Module"><span class="toc-text">IDM下载器(IDM Integration Module)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Global-Speed-%E8%A7%86%E9%A2%91%E9%80%9F%E5%BA%A6%E6%8E%A7%E5%88%B6"><span class="toc-text">Global Speed: 视频速度控制</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86%E2%80%93%E7%94%B5%E8%84%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E4%B8%8E%E6%80%A7%E8%83%BD%E5%AE%8C%E7%BE%8E%E7%BA%A7%E8%B0%83%E8%AF%95"><span class="toc-text">小白知识–电脑的生产力与性能完美级调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-text">性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HUO"><span class="toc-text">HUO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-text">管理自启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B9%E7%AA%97%E7%AE%A1%E7%90%86"><span class="toc-text">弹窗管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E5%8A%9B"><span class="toc-text">生产力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE%E7%BF%BB%E8%AF%91"><span class="toc-text">截图翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-text">截图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE%E8%AF%86%E5%AD%97"><span class="toc-text">截图识字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E8%A7%88%E5%99%A8%E9%80%82%E9%85%8D"><span class="toc-text">游览器适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E7%94%A8%EF%BC%9A"><span class="toc-text">好用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AdGuard-%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-text">AdGuard 广告拦截器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Convertio-%E4%B8%87%E8%83%BD%E6%A0%BC%E5%BC%8F%E8%BD%AC%E5%8C%96%E5%99%A8"><span class="toc-text">Convertio 万能格式转化器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDM%E4%B8%8B%E8%BD%BD%E5%99%A8-IDM-Integration-Module"><span class="toc-text">IDM下载器(IDM Integration Module)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Global-Speed-%E8%A7%86%E9%A2%91%E9%80%9F%E5%BA%A6%E6%8E%A7%E5%88%B6"><span class="toc-text">Global Speed: 视频速度控制</span></a></li></ol></li></ol></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-12-31</div>
+        <a href="/post/ubuntu_ROS_shoudong.html"><div class="recent-posts-item-content">ubuntu系统安装ROS（手动版）</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-11-28</div>
+        <a href="/post/baocunjingxiang.html"><div class="recent-posts-item-content">Ubuntu备份自定义镜像 --我的目的：保存ROS环境</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-10-31</div>
+        <a href="/post/ruanjian.html"><div class="recent-posts-item-content">小白知识--电脑的生产力与性能完美级调试</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-09-28</div>
+        <a href="/post/ROSfanyi.html"><div class="recent-posts-item-content">ROS包编译时遇到报错,直接解决90%的问题？</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2023-6-1
+          
+          
+                - 
+                2024
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Azitide
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+      <div class="BbeiAn-info">
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 啊梓提的 </a>
+      </div>
+      
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>
