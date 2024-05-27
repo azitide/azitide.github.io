@@ -566,9 +566,9 @@
     <p>ROS 2Launch文件允许您同时启动和配置包含ROS 2节点的多个可执行文件。</p>
 <h4 id="一、为什么需要Launch文件"><a href="#一、为什么需要Launch文件" class="headerlink" title="一、为什么需要Launch文件"></a>一、为什么需要Launch文件</h4><p>1、需要启动的节点太多，手动启动太麻烦<br>2、客户端服务端通信时，需要相互依赖（顺序启动）<br>3、在描述可重复使用的launch文件时，用参数文件yaml替换可用于提供更大的灵活性<br>4、启动配置好的RViz<br>5、在新版（ros2）的launch文件可以使用python编写，可以加入规则集（if）</p>
 <h4 id="二、launch文件编写"><a href="#二、launch文件编写" class="headerlink" title="二、launch文件编写"></a>二、launch文件编写</h4><p>1、在功能包新建一个launch的文件夹</p>
-<p><img src="https://raw.githubusercontent.com/azitide/imgcode/main/img/launch/abe67df1-7d7d-4109-8433-65fa0fb2460d.png" alt="abe67df1-7d7d-4109-8433-65fa0fb2460d" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/azitide/imgcode/main/img/launch/abe67df1-7d7d-4109-8433-65fa0fb2460d.png" class="lozad post-image"></p>
+<p><img src="https://i.072333.xyz/file/a0c440d12cff4b22702f0.png" alt="abe67df1-7d7d-4109-8433-65fa0fb2460d" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://i.072333.xyz/file/a0c440d12cff4b22702f0.png" class="lozad post-image"></p>
 <p>2、新建launch.py（名称自定）文件，我以nat.launch.py为例</p>
-<p><img src="https://raw.githubusercontent.com/azitide/imgcode/main/img/launch/eff5c48d-788c-417b-b079-d1e8daa894fd.png" alt="eff5c48d-788c-417b-b079-d1e8daa894fd" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/azitide/imgcode/main/img/launch/eff5c48d-788c-417b-b079-d1e8daa894fd.png" class="lozad post-image"></p>
+<p><img src="https://i.072333.xyz/file/d66aa8bf043baadd7d5f8.png" alt="eff5c48d-788c-417b-b079-d1e8daa894fd" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://i.072333.xyz/file/d66aa8bf043baadd7d5f8.png" class="lozad post-image"></p>
 <p>内容为：</p>
 <pre class="line-numbers language-none"><code class="language-none">from launch import LaunchDescription  #引入功能函数库
 import launch_ros.actions 
@@ -605,7 +605,7 @@ def generate_launch_description():  #默认函数名
 <p>3、回到luanch文件夹里面打开终端，输入以下命令行</p>
 <pre class="line-numbers language-none"><code class="language-none">ros2 launch nat.launch.py</code></pre>
 
-<p>在终端检测是否有问题<img src="https://raw.githubusercontent.com/azitide/imgcode/main/img/launch/727bba95-5924-4c41-93d9-4171fe2b9ceb.png" alt="727bba95-5924-4c41-93d9-4171fe2b9ceb" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/azitide/imgcode/main/img/launch/727bba95-5924-4c41-93d9-4171fe2b9ceb.png" class="lozad post-image"></p>
+<p>在终端检测是否有问题<img src="https://i.072333.xyz/file/0f8d3dbb61e7fe382b055.png" alt="727bba95-5924-4c41-93d9-4171fe2b9ceb" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://i.072333.xyz/file/0f8d3dbb61e7fe382b055.png" class="lozad post-image"></p>
 <p>4、如果已经可以在终端使用成功，就要在setup.py文件添加一行参数，让这个launch文件可以全局使用</p>
 <pre class="line-numbers language-none"><code class="language-none">from setuptools import find_packages, setup
 from glob import glob    #添加库文件
