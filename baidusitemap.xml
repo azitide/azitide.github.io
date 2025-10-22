@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://azitide.github.io//post/ubuntu_ROS.html</loc>
+    <lastmod>2025-10-22</lastmod>
+  </url>
+  <url>
     <loc>http://azitide.github.io//post/USB-can_OmniPicker.html</loc>
     <lastmod>2025-10-07</lastmod>
   </url>
@@ -15,10 +19,6 @@
   <url>
     <loc>http://azitide.github.io//post/ubuntu_index.html</loc>
     <lastmod>2024-03-08</lastmod>
-  </url>
-  <url>
-    <loc>http://azitide.github.io//post/ubuntu_ROS.html</loc>
-    <lastmod>2024-01-11</lastmod>
   </url>
   <url>
     <loc>http://azitide.github.io//post/ubuntu_ROS_shoudong.html</loc>

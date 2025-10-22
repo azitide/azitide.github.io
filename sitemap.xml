@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://azitide.github.io/post/ubuntu_ROS.html</loc>
+    
+    <lastmod>2025-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://azitide.github.io/post/USB-can_OmniPicker.html</loc>
     
     <lastmod>2025-10-07</lastmod>
@@ -32,15 +41,6 @@
     <loc>http://azitide.github.io/post/ubuntu_index.html</loc>
     
     <lastmod>2024-03-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://azitide.github.io/post/ubuntu_ROS.html</loc>
-    
-    <lastmod>2024-01-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -211,7 +211,7 @@
 
   <url>
     <loc>http://azitide.github.io/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -219,91 +219,91 @@
   
   <url>
     <loc>http://azitide.github.io/tags/%E7%BD%91%E9%A1%B5/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/css/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/JavaScript/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/html/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/hexo/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/Node-js/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/VUE/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/%E6%A1%86%E6%9E%B6/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/tags/%E7%A1%AC%E4%BB%B6/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -312,35 +312,35 @@
   
   <url>
     <loc>http://azitide.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/categories/%E5%B0%8F%E7%99%BD%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/categories/Linux/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/categories/ROS/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://azitide.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2025-10-07</lastmod>
+    <lastmod>2025-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
