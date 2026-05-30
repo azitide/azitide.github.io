@@ -35,7 +35,7 @@
     
       <meta 
         property="og:img" 
-        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+        content="https://s41.ax1x.com/2026/05/30/pmkV8FU.jpg">
     
     
     
@@ -206,7 +206,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
   <body>
     <div class="wrapper">
@@ -260,6 +260,30 @@
         
       </a>
     
+      <a 
+        href="/ailinks" 
+        class="navbar-menu-item">
+        
+          AI时代
+        
+      </a>
+    
+      <a 
+        href="/ai-tool" 
+        class="navbar-menu-item">
+        
+          AI API测试工具
+        
+      </a>
+    
+      <a 
+        href="https://azitide.github.io/" 
+        class="navbar-menu-item">
+        
+          三周年
+        
+      </a>
+    
     <button 
       class="navbar-menu-item darknavbar navbar-menu-btn" 
       aria-label="Toggle dark mode"
@@ -305,14 +329,14 @@
               <div class="card card-author">
                 
   <img 
-    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    src="https://s41.ax1x.com/2026/05/30/pmkV8FU.jpg" 
     class="author-img"
     width="88"
     height="88"
     alt="author avatar">
 
 <p class="author-name">Azitide</p>
-<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<p class="author-description">一个摸索的过程不能说有了结果就否定了过程！</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
@@ -368,7 +392,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%EF%BC%88dd%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="toc-text">双系统的镜像备份（dd命令）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%88%91%E4%BB%AC%E7%94%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">或者我们用最简单的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-text">第三步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F"><span class="toc-text">重新烧录镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">单系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Systemback"><span class="toc-text">1.Systemback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Timesift"><span class="toc-text">2.Timesift</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%EF%BC%88dd%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="toc-text">双系统的镜像备份（dd命令）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%88%91%E4%BB%AC%E7%94%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">或者我们用最简单的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-text">第三步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F"><span class="toc-text">重新烧录镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">单系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Systemback"><span class="toc-text">1.Systemback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Timesift"><span class="toc-text">2.Timesift</span></a></li></ol></li></ol>
       </div>
     </article>
   
@@ -397,13 +421,6 @@
         </div>
       </a>
     
-      <a href="/categories/Linux/">
-        <div class="categories-list-item">
-          Linux
-          <span class="categories-list-item-badge">6</span>
-        </div>
-      </a>
-    
       <a href="/categories/ROS/">
         <div class="categories-list-item">
           ROS
@@ -415,6 +432,13 @@
         <div class="categories-list-item">
           服务器
           <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -470,6 +494,12 @@
       </a>
     
       <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
         href="/tags/YOLO/" 
         title="YOLO">
         <div class="tags-list-item">YOLO</div>
@@ -482,12 +512,6 @@
       </a>
     
       <a 
-        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
-        title="微信小程序">
-        <div class="tags-list-item">微信小程序</div>
-      </a>
-    
-      <a 
         href="/tags/%E6%A1%86%E6%9E%B6/" 
         title="框架">
         <div class="tags-list-item">框架</div>
@@ -497,6 +521,12 @@
         href="/tags/VUE/" 
         title="VUE">
         <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
       </a>
     
       <a 
@@ -515,12 +545,6 @@
         href="/tags/JavaScript/" 
         title="JavaScript">
         <div class="tags-list-item">JavaScript</div>
-      </a>
-    
-      <a 
-        href="/tags/css/" 
-        title="css">
-        <div class="tags-list-item">css</div>
       </a>
     
   </div>
@@ -550,21 +574,21 @@
       <span class="dot"></span>
       
         <a 
-          href="/categories/Linux/" 
-          class="post-meta-link">
-          Linux
-        </a>
-      
-        <a 
           href="/categories/ROS/" 
           class="post-meta-link">
           ROS
         </a>
       
+        <a 
+          href="/categories/Linux/" 
+          class="post-meta-link">
+          Linux
+        </a>
+      
     
     
       <span class="dot"></span>
-      <span>805 字</span>
+      <span>786 字</span>
     
   </div>
   
@@ -596,7 +620,7 @@
 <li>我们需要知道要被备份系统的硬盘的位置</li>
 </ul>
 <p>在终端中输入</p>
-<pre class="line-numbers language-none"><code class="language-none">df -h</code></pre>
+<pre class="highlight"><span class="line">df -h</span><br></pre>
 
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pid134g"><img src="https://z1.ax1x.com/2023/11/22/pid134g.md.png" alt="pid134g.md.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://z1.ax1x.com/2023/11/22/pid134g.md.png" class="lozad post-image"></a></p>
 <h4 id="或者我们用最简单的方法："><a href="#或者我们用最简单的方法：" class="headerlink" title="或者我们用最简单的方法："></a>或者我们用最简单的方法：</h4><p>1.打开ubuntu系统软件 disks（硬盘）</p>
@@ -609,14 +633,14 @@
 <li><p>或者执行以下命令，查看磁盘号</p>
 </li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">sudo parted -l</code></pre>
+<pre class="highlight"><span class="line">sudo parted -l</span><br></pre>
 
 <h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>我们需要使用dd命令进行备份</p>
 <p>1.需要在root模式下执行备份</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo su</code></pre>
+<pre class="highlight"><span class="line">sudo su</span><br></pre>
 
 <p>2.输入dd命令</p>
-<pre class="line-numbers language-none"><code class="language-none">dd if&#x3D;&#x2F;dev&#x2F;sda1 conv&#x3D;sync,noerror bs&#x3D;64k | gzip -c &gt; &#x2F;dev&#x2F;TD&#x2F;jetson-tx1.img.gz</code></pre>
+<pre class="highlight"><span class="line">dd if=/dev/sda1 conv=sync,noerror bs=64k | gzip -c &gt; /dev/TD/jetson-tx1.img.gz</span><br></pre>
 
 <p>注释：</p>
 <ul>
@@ -626,22 +650,22 @@
 </ul>
 <p>（输完后，终端不会动的)</p>
 <p>3、实时查看进度，需要在<strong>新建窗口</strong>中使用命令</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo watch -n 5 pkill -USR1 -n -x dd</code></pre>
+<pre class="highlight"><span class="line">sudo watch -n 5 pkill -USR1 -n -x dd</span><br></pre>
 
 <p>4、耐心等待，备份完成后，<strong>终端会自动退出进程</strong>,终端会自动暂停！</p>
 <p>再查看U盘里有没有个几G大小的文件</p>
 <h3 id="重新烧录镜像"><a href="#重新烧录镜像" class="headerlink" title="重新烧录镜像"></a>重新烧录镜像</h3><p>前言：<br>烧录镜像需要先格式化硬盘，但是烧录又需要linux系统的存在，优先适合双系统盘的Ubuntu系统（如jetson系列板子），或者在新的U盘装上Ubuntu系统也可以。</p>
 <p>1.烧录指令格式如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">gzip -c SSD 镜像文件 .gz | dd of&#x3D;&#x2F;dev&#x2F;sda1 bs&#x3D;64k</code></pre>
+<pre class="highlight"><span class="line">gzip -c SSD 镜像文件 .gz | dd of=/dev/sda1 bs=64k</span><br></pre>
 
 <p>2.根据原来的保存过的镜像，我应该如下：<br>（烧录前也需要进入root模式）</p>
-<pre class="line-numbers language-none"><code class="language-none">gzip -c &#x2F;dev&#x2F;TD&#x2F;jetson-tx1.img.gz | dd of&#x3D;&#x2F;dev&#x2F;sda1 bs&#x3D;64k</code></pre>
+<pre class="highlight"><span class="line">gzip -c /dev/TD/jetson-tx1.img.gz | dd of=/dev/sda1 bs=64k</span><br></pre>
 
 <p>3.解压过程可以<strong>新打开一个终端</strong>使用命令<br>（一）查看一次当前进度：</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo pkill -USR1 -n -x dd</code></pre>
+<pre class="highlight"><span class="line">sudo pkill -USR1 -n -x dd</span><br></pre>
 
 <p>（二）想让他一直显示当前进度，使用命令:</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo watch -n 5 pkill -USR1 -n -x dd</code></pre>
+<pre class="highlight"><span class="line">sudo watch -n 5 pkill -USR1 -n -x dd</span><br></pre>
 
 <p>（定时 5 秒刷新一次进度）</p>
 <p>4、耐心等待，备份完成后，终端会自动退出进程</p>
@@ -760,7 +784,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%EF%BC%88dd%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="toc-text">双系统的镜像备份（dd命令）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%88%91%E4%BB%AC%E7%94%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">或者我们用最简单的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-text">第三步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F"><span class="toc-text">重新烧录镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">单系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Systemback"><span class="toc-text">1.Systemback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Timesift"><span class="toc-text">2.Timesift</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%EF%BC%88dd%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="toc-text">双系统的镜像备份（dd命令）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%88%91%E4%BB%AC%E7%94%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">或者我们用最简单的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-text">第三步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F"><span class="toc-text">重新烧录镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">单系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Systemback"><span class="toc-text">1.Systemback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Timesift"><span class="toc-text">2.Timesift</span></a></li></ol></li></ol>
 </div>
 
             </main>
@@ -775,7 +799,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%EF%BC%88dd%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="toc-text">双系统的镜像备份（dd命令）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%88%91%E4%BB%AC%E7%94%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">或者我们用最简单的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-text">第三步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F"><span class="toc-text">重新烧录镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">单系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Systemback"><span class="toc-text">1.Systemback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Timesift"><span class="toc-text">2.Timesift</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%EF%BC%88dd%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="toc-text">双系统的镜像备份（dd命令）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%88%91%E4%BB%AC%E7%94%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">或者我们用最简单的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-text">第三步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F"><span class="toc-text">重新烧录镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">单系统：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Systemback"><span class="toc-text">1.Systemback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Timesift"><span class="toc-text">2.Timesift</span></a></li></ol></li></ol>
     </article>
   
   
@@ -848,8 +872,15 @@
     
     
       <div class="BbeiAn-info">
-        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 阿梓踢的 | 维护次数：50次 | 最近维护时间：2026年4月29日 | 天气小热！  </a>
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 阿梓踢的 | 维护次数：51次 | 最近维护时间：2026年5月30日 | 天气酷酷热！  </a>
       </div>
+      
+        <div class="BbeiAn-info">
+          <span style="padding-left: 25px;background: url(/img/beian.png) no-repeat left center"></span>
+          <a href=" ">网站更新v2.0: 新增ai推荐目录与工具、修复文章目录bug等...（2026.05.30）
+          </a>
+          <br />
+        </div>
       
     
     
@@ -967,7 +998,7 @@
     
     
       <script>
-        setTimeout(() => {localSearch("search.json")}, 0)
+        setTimeout(() => {localSearch("/search.json")}, 0)
       </script>
     
   </body>

@@ -18,19 +18,19 @@
   <link 
     rel="icon" 
     href="/">
-  <title>归档</title>
+  <title>AI API测试工具</title>
   
 
   
     
       <meta 
         property="og:title" 
-        content="归档">
+        content="AI API测试工具">
     
     
       <meta 
         property="og:url" 
-        content="http://azitide.github.io/archives/2023/11/index.html">
+        content="http://azitide.github.io/ai-tool/index.html">
     
     
       <meta 
@@ -667,32 +667,396 @@
             </aside>
             <main class="main-column">
               
-<div class="card card-content">
-  <h1 class="widget-title">归档</h1>
-</div>
-<div class="archive-timeline">
-  
-  
-    
-      <div class="archive-timeline-tag"><span>2023</span></div>
-      
-    
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2023-11-28</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/post/baocunjingxiang.html"
-              class="archive-timeline-post-item">
-              Ubuntu备份自定义镜像 --我的目的：保存ROS环境
-            </a>
-          </div>
+<div class="ai-tool">
+  <div class="card card-content">
+    <div class="ai-tool-header">
+      <h1 class="widget-title">AI API测试工具</h1>
+      <div class="ai-tool-desc">在浏览器中直接测试 AI API，支持 OpenAI 兼容接口的流式/非流式请求。API Key 仅保存在你的浏览器本地，不会上传到服务器。</div>
+    </div>
+
+    <div class="ai-tool-warning">
+      ⚠️ 你的 API Key 仅存储在浏览器 localStorage 中，不会发送到任何第三方服务器。请求直接从你的浏览器发送到 API 服务端，请注意 CORS 限制。
+    </div>
+
+    <div class="ai-tool-form">
+      <div class="ai-form-group">
+        <label class="ai-form-label">API 预设</label>
+        <div class="ai-tool-preset">
+          <button class="ai-preset-btn active" data-preset="openai" onclick="applyPreset('openai')">OpenAI</button>
+          <button class="ai-preset-btn" data-preset="deepseek" onclick="applyPreset('deepseek')">DeepSeek</button>
+          <button class="ai-preset-btn" data-preset="zhipu" onclick="applyPreset('zhipu')">智谱 GLM</button>
+          <button class="ai-preset-btn" data-preset="moonshot" onclick="applyPreset('moonshot')">Moonshot</button>
+          <button class="ai-preset-btn" data-preset="custom" onclick="applyPreset('custom')">自定义</button>
         </div>
       </div>
+
+      <div class="ai-form-group">
+        <label class="ai-form-label" for="ai-api-url">API 地址</label>
+        <input class="ai-form-input" type="text" id="ai-api-url" placeholder="https://api.openai.com/v1/chat/completions" />
+      </div>
+
+      <div class="ai-form-group">
+        <label class="ai-form-label" for="ai-api-key">API Key</label>
+        <input class="ai-form-input" type="password" id="ai-api-key" placeholder="sk-..." />
+      </div>
+
+      <div class="ai-form-group">
+        <label class="ai-form-label ai-form-checkbox" for="ai-proxy-url">
+          CORS 代理地址（可选）
+          <span class="ai-label-hint" onclick="toggleProxyHelp()">？</span>
+        </label>
+        <input class="ai-form-input" type="text" id="ai-proxy-url" placeholder="留空则直连，例如：https://cors-proxy.example.com/?url=" />
+        <div class="ai-proxy-help" id="ai-proxy-help" style="display:none;">
+          <p>当浏览器直接请求 API 出现 "Failed to fetch" 错误时，说明遇到了 CORS 跨域限制。</p>
+          <p><b>解决方案：</b>填写一个 CORS 代理地址，请求会通过代理转发。代理地址前缀 + 实际 API 地址 = 最终请求地址。</p>
+          <p><b>示例：</b>若代理为 <code>https://cors-proxy.example.com/?url=</code>，请求 <code>https://api.openai.com/v1/chat/completions</code> 时，实际发送到 <code>https://cors-proxy.example.com/?url=https://api.openai.com/v1/chat/completions</code></p>
+          <p><b>自建代理推荐：</b>部署 <a href="https://github.com/Rob--W/cors-anywhere" target="_blank" rel="noopener">cors-anywhere</a> 或使用 Cloudflare Workers 搭建。</p>
+        </div>
+      </div>
+
+      <div class="ai-form-row">
+        <div class="ai-form-group" style="flex:2">
+          <label class="ai-form-label" for="ai-model">模型</label>
+          <div class="ai-model-combo">
+            <input class="ai-form-input" type="text" id="ai-model" placeholder="gpt-3.5-turbo" list="ai-model-list" />
+            <datalist id="ai-model-list"></datalist>
+            <button class="ai-btn ai-btn-fetch" id="ai-fetch-models-btn" onclick="fetchModels()">获取模型</button>
+          </div>
+        </div>
+        <div class="ai-form-group">
+          <label class="ai-form-label" for="ai-max-tokens">Max Tokens</label>
+          <input class="ai-form-input" type="number" id="ai-max-tokens" value="2048" min="1" max="128000" />
+        </div>
+        <div class="ai-form-group">
+          <label class="ai-form-label" for="ai-temperature">Temperature</label>
+          <input class="ai-form-input" type="number" id="ai-temperature" value="0.7" min="0" max="2" step="0.1" />
+        </div>
+      </div>
+
+      <div class="ai-form-group">
+        <label class="ai-form-label ai-form-checkbox">
+          <input type="checkbox" id="ai-stream" checked /> 流式输出 (Streaming)
+        </label>
+      </div>
+
+      <div class="ai-form-group">
+        <label class="ai-form-label" for="ai-system-prompt">System Prompt（可选）</label>
+        <input class="ai-form-input" type="text" id="ai-system-prompt" placeholder="You are a helpful assistant." />
+      </div>
+
+      <div class="ai-form-group">
+        <label class="ai-form-label" for="ai-user-prompt">用户消息</label>
+        <textarea class="ai-form-textarea" id="ai-user-prompt" placeholder="在此输入你的问题..."></textarea>
+      </div>
+
+      <div class="ai-tool-actions">
+        <button class="ai-btn ai-btn-primary" id="ai-send-btn" onclick="sendRequest()">发送请求</button>
+        <button class="ai-btn ai-btn-secondary" onclick="clearResponse()">清空响应</button>
+        <button class="ai-btn ai-btn-secondary" onclick="saveSettings()">保存配置</button>
+      </div>
     </div>
-  
+  </div>
+
+  <div class="card card-content ai-tool-response" id="ai-response-card" style="display:none;">
+    <div class="ai-response-header">
+      <div class="ai-response-title">响应结果</div>
+      <div class="ai-response-meta" id="ai-response-meta"></div>
+    </div>
+    <div class="ai-response-body" id="ai-response-body"></div>
+    <details class="ai-response-raw">
+      <summary>查看原始 JSON</summary>
+      <pre id="ai-response-raw"></pre>
+    </details>
+  </div>
 </div>
+
+<script>
+(function() {
+  function buildUrl(originalUrl) {
+    var proxy = document.getElementById('ai-proxy-url').value.trim();
+    if (!proxy) return originalUrl;
+    if (proxy.indexOf('{url}') !== -1) {
+      return proxy.replace('{url}', encodeURIComponent(originalUrl));
+    }
+    return proxy + encodeURIComponent(originalUrl);
+  }
+
+  window.toggleProxyHelp = function() {
+    var el = document.getElementById('ai-proxy-help');
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  };
+
+  var presets = {
+    openai: {
+      url: 'https://api.openai.com/v1/chat/completions',
+      model: 'gpt-3.5-turbo'
+    },
+    deepseek: {
+      url: 'https://api.deepseek.com/v1/chat/completions',
+      model: 'deepseek-chat'
+    },
+    zhipu: {
+      url: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+      model: 'glm-4-flash'
+    },
+    moonshot: {
+      url: 'https://api.moonshot.cn/v1/chat/completions',
+      model: 'moonshot-v1-8k'
+    },
+    custom: {
+      url: '',
+      model: ''
+    }
+  };
+
+  window.applyPreset = function(name) {
+    var p = presets[name];
+    if (!p) return;
+    document.querySelectorAll('.ai-preset-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.preset === name);
+    });
+    document.getElementById('ai-api-url').value = p.url;
+    document.getElementById('ai-model').value = p.model;
+    var datalist = document.getElementById('ai-model-list');
+    datalist.innerHTML = '';
+  };
+
+  window.fetchModels = function() {
+    var url = document.getElementById('ai-api-url').value.trim();
+    var key = document.getElementById('ai-api-key').value.trim();
+    if (!url) { alert('请先输入 API 地址'); return; }
+    if (!key) { alert('请先输入 API Key'); return; }
+
+    var modelsUrl = url.replace(/\/chat\/completions\/?$/, '').replace(/\/v1\/?$/, '') + '/v1/models';
+    if (url.indexOf('/v4/') !== -1) {
+      modelsUrl = url.replace(/\/chat\/completions\/?$/, '') + '/models';
+    }
+
+    var fetchBtn = document.getElementById('ai-fetch-models-btn');
+    fetchBtn.disabled = true;
+    fetchBtn.textContent = '获取中...';
+
+    fetch(buildUrl(modelsUrl), {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + key
+      }
+    }).then(function(res) {
+      if (!res.ok) {
+        return res.text().then(function(t) { throw new Error('HTTP ' + res.status + ': ' + t); });
+      }
+      return res.json();
+    }).then(function(data) {
+      var datalist = document.getElementById('ai-model-list');
+      datalist.innerHTML = '';
+      var models = data.data || data.models || [];
+      models.sort(function(a, b) {
+        var nameA = a.id || a.name || '';
+        var nameB = b.id || b.name || '';
+        return nameA.localeCompare(nameB);
+      });
+      models.forEach(function(m) {
+        var opt = document.createElement('option');
+        opt.value = m.id || m.name || '';
+        datalist.appendChild(opt);
+      });
+      fetchBtn.disabled = false;
+      fetchBtn.textContent = '获取模型 ✓';
+      setTimeout(function() { fetchBtn.textContent = '获取模型'; }, 2000);
+      if (models.length === 0) {
+        alert('未获取到模型列表，请手动输入模型名称');
+      }
+    }).catch(function(err) {
+      fetchBtn.disabled = false;
+      fetchBtn.textContent = '获取模型';
+      alert('获取模型列表失败: ' + err.message + '\n\n你可以手动输入模型名称，或检查 API 地址是否正确。');
+    });
+  };
+
+  window.saveSettings = function() {
+    var settings = {
+      url: document.getElementById('ai-api-url').value,
+      key: document.getElementById('ai-api-key').value,
+      proxy: document.getElementById('ai-proxy-url').value,
+      model: document.getElementById('ai-model').value,
+      maxTokens: document.getElementById('ai-max-tokens').value,
+      temperature: document.getElementById('ai-temperature').value,
+      stream: document.getElementById('ai-stream').checked,
+      systemPrompt: document.getElementById('ai-system-prompt').value
+    };
+    localStorage.setItem('ai-tool-settings', JSON.stringify(settings));
+    var btn = event.target;
+    btn.textContent = '已保存 ✓';
+    setTimeout(function() { btn.textContent = '保存配置'; }, 1500);
+  };
+
+  function loadSettings() {
+    var saved = localStorage.getItem('ai-tool-settings');
+    if (!saved) return;
+    try {
+      var s = JSON.parse(saved);
+      if (s.url) document.getElementById('ai-api-url').value = s.url;
+      if (s.key) document.getElementById('ai-api-key').value = s.key;
+      if (s.proxy) document.getElementById('ai-proxy-url').value = s.proxy;
+      if (s.model) document.getElementById('ai-model').value = s.model;
+      if (s.maxTokens) document.getElementById('ai-max-tokens').value = s.maxTokens;
+      if (s.temperature) document.getElementById('ai-temperature').value = s.temperature;
+      if (s.stream !== undefined) document.getElementById('ai-stream').checked = s.stream;
+      if (s.systemPrompt) document.getElementById('ai-system-prompt').value = s.systemPrompt;
+    } catch(e) {}
+  }
+
+  window.clearResponse = function() {
+    document.getElementById('ai-response-card').style.display = 'none';
+    document.getElementById('ai-response-body').textContent = '';
+    document.getElementById('ai-response-raw').textContent = '';
+    document.getElementById('ai-response-meta').textContent = '';
+  };
+
+  window.sendRequest = function() {
+    var url = document.getElementById('ai-api-url').value.trim();
+    var key = document.getElementById('ai-api-key').value.trim();
+    var model = document.getElementById('ai-model').value.trim();
+    var maxTokens = parseInt(document.getElementById('ai-max-tokens').value) || 2048;
+    var temperature = parseFloat(document.getElementById('ai-temperature').value);
+    var stream = document.getElementById('ai-stream').checked;
+    var systemPrompt = document.getElementById('ai-system-prompt').value.trim();
+    var userPrompt = document.getElementById('ai-user-prompt').value.trim();
+
+    if (!url) { alert('请输入 API 地址'); return; }
+    if (!key) { alert('请输入 API Key'); return; }
+    if (!model) { alert('请输入模型名称'); return; }
+    if (!userPrompt) { alert('请输入用户消息'); return; }
+
+    var messages = [];
+    if (systemPrompt) {
+      messages.push({ role: 'system', content: systemPrompt });
+    }
+    messages.push({ role: 'user', content: userPrompt });
+
+    var body = {
+      model: model,
+      messages: messages,
+      max_tokens: maxTokens,
+      temperature: temperature,
+      stream: stream
+    };
+
+    var responseCard = document.getElementById('ai-response-card');
+    var responseBody = document.getElementById('ai-response-body');
+    var responseRaw = document.getElementById('ai-response-raw');
+    var responseMeta = document.getElementById('ai-response-meta');
+    var sendBtn = document.getElementById('ai-send-btn');
+
+    responseCard.style.display = 'block';
+    responseBody.innerHTML = '<span class="ai-streaming-cursor"></span>';
+    responseRaw.textContent = '';
+    responseMeta.textContent = '请求中...';
+    sendBtn.disabled = true;
+    sendBtn.textContent = '请求中...';
+
+    var startTime = Date.now();
+
+    if (stream) {
+      fetch(buildUrl(url), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + key
+        },
+        body: JSON.stringify(body)
+      }).then(function(res) {
+        if (!res.ok) {
+          return res.text().then(function(t) { throw new Error('HTTP ' + res.status + ': ' + t); });
+        }
+        var reader = res.body.getReader();
+        var decoder = new TextDecoder();
+        var fullContent = '';
+        var rawChunks = '';
+
+        function read() {
+          reader.read().then(function(result) {
+            var chunk = decoder.decode(result.value, { stream: true });
+            rawChunks += chunk;
+            var lines = chunk.split('\n');
+            for (var i = 0; i < lines.length; i++) {
+              var line = lines[i].trim();
+              if (!line || line === 'data: [DONE]') continue;
+              if (line.startsWith('data: ')) {
+                try {
+                  var json = JSON.parse(line.slice(6));
+                  var delta = json.choices && json.choices[0] && json.choices[0].delta;
+                  if (delta && delta.content) {
+                    fullContent += delta.content;
+                  }
+                } catch(e) {}
+              }
+            }
+            responseBody.textContent = fullContent;
+            responseBody.innerHTML += '<span class="ai-streaming-cursor"></span>';
+            responseBody.scrollTop = responseBody.scrollHeight;
+
+            if (result.done) {
+              var elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+              responseBody.textContent = fullContent;
+              responseMeta.textContent = '耗时 ' + elapsed + 's | ' + fullContent.length + ' 字符';
+              responseRaw.textContent = rawChunks;
+              sendBtn.disabled = false;
+              sendBtn.textContent = '发送请求';
+              return;
+            }
+            read();
+          }).catch(function(err) {
+            responseBody.textContent = '流式读取错误: ' + err.message;
+            sendBtn.disabled = false;
+            sendBtn.textContent = '发送请求';
+          });
+        }
+        read();
+      }).catch(function(err) {
+        responseBody.textContent = '请求失败: ' + err.message;
+        responseMeta.textContent = '';
+        responseRaw.textContent = err.message;
+        sendBtn.disabled = false;
+        sendBtn.textContent = '发送请求';
+      });
+    } else {
+      fetch(buildUrl(url), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + key
+        },
+        body: JSON.stringify(body)
+      }).then(function(res) {
+        if (!res.ok) {
+          return res.text().then(function(t) { throw new Error('HTTP ' + res.status + ': ' + t); });
+        }
+        return res.json();
+      }).then(function(data) {
+        var elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        var content = '';
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+          content = data.choices[0].message.content || '';
+        }
+        responseBody.textContent = content;
+        responseMeta.textContent = '耗时 ' + elapsed + 's | ' + content.length + ' 字符';
+        responseRaw.textContent = JSON.stringify(data, null, 2);
+        sendBtn.disabled = false;
+        sendBtn.textContent = '发送请求';
+      }).catch(function(err) {
+        responseBody.textContent = '请求失败: ' + err.message;
+        responseMeta.textContent = '';
+        responseRaw.textContent = err.message;
+        sendBtn.disabled = false;
+        sendBtn.textContent = '发送请求';
+      });
+    }
+  };
+
+  loadSettings();
+})();
+</script>
 
             </main>
             <aside class="right-column">

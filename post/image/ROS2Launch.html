@@ -35,7 +35,7 @@
     
       <meta 
         property="og:img" 
-        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+        content="https://s41.ax1x.com/2026/05/30/pmkV8FU.jpg">
     
     
     
@@ -206,7 +206,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
   <body>
     <div class="wrapper">
@@ -260,6 +260,30 @@
         
       </a>
     
+      <a 
+        href="/ailinks" 
+        class="navbar-menu-item">
+        
+          AI时代
+        
+      </a>
+    
+      <a 
+        href="/ai-tool" 
+        class="navbar-menu-item">
+        
+          AI API测试工具
+        
+      </a>
+    
+      <a 
+        href="https://azitide.github.io/" 
+        class="navbar-menu-item">
+        
+          三周年
+        
+      </a>
+    
     <button 
       class="navbar-menu-item darknavbar navbar-menu-btn" 
       aria-label="Toggle dark mode"
@@ -305,14 +329,14 @@
               <div class="card card-author">
                 
   <img 
-    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    src="https://s41.ax1x.com/2026/05/30/pmkV8FU.jpg" 
     class="author-img"
     width="88"
     height="88"
     alt="author avatar">
 
 <p class="author-name">Azitide</p>
-<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<p class="author-description">一个摸索的过程不能说有了结果就否定了过程！</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
@@ -397,13 +421,6 @@
         </div>
       </a>
     
-      <a href="/categories/Linux/">
-        <div class="categories-list-item">
-          Linux
-          <span class="categories-list-item-badge">6</span>
-        </div>
-      </a>
-    
       <a href="/categories/ROS/">
         <div class="categories-list-item">
           ROS
@@ -415,6 +432,13 @@
         <div class="categories-list-item">
           服务器
           <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -470,6 +494,12 @@
       </a>
     
       <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
         href="/tags/YOLO/" 
         title="YOLO">
         <div class="tags-list-item">YOLO</div>
@@ -482,12 +512,6 @@
       </a>
     
       <a 
-        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
-        title="微信小程序">
-        <div class="tags-list-item">微信小程序</div>
-      </a>
-    
-      <a 
         href="/tags/%E6%A1%86%E6%9E%B6/" 
         title="框架">
         <div class="tags-list-item">框架</div>
@@ -497,6 +521,12 @@
         href="/tags/VUE/" 
         title="VUE">
         <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
       </a>
     
       <a 
@@ -515,12 +545,6 @@
         href="/tags/JavaScript/" 
         title="JavaScript">
         <div class="tags-list-item">JavaScript</div>
-      </a>
-    
-      <a 
-        href="/tags/css/" 
-        title="css">
-        <div class="tags-list-item">css</div>
       </a>
     
   </div>
@@ -558,7 +582,7 @@
     
     
       <span class="dot"></span>
-      <span>672 字</span>
+      <span>633 字</span>
     
   </div>
   
@@ -592,75 +616,14 @@
 <p>2、新建launch.py（名称自定）文件，我以nat.launch.py为例</p>
 <p><img src="https://i.072333.xyz/file/d66aa8bf043baadd7d5f8.png" alt="eff5c48d-788c-417b-b079-d1e8daa894fd" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://i.072333.xyz/file/d66aa8bf043baadd7d5f8.png" class="lozad post-image"></p>
 <p>内容为：</p>
-<pre class="line-numbers language-none"><code class="language-none">from launch import LaunchDescription  #引入功能函数库
-import launch_ros.actions 
-
-def generate_launch_description():  #默认函数名
-   &#39;&#39;&#39;
- 程序名称变量 &#x3D; 函数打开（
-            package&#x3D;&#39;功能包名&#39;, 
-            executable&#x3D;&#39;要启动程序名&#39;,  #（在python功能被，setup.py中你已经定义了程序名，不用后缀）
-            name&#x3D;&#39;usb_cam&#39;, #（随便名称）（可选）
-           #arguments&#x3D;[&#39;0&#39;, &#39;0&#39;, &#39;0&#39;,&#39;0&#39;, &#39;0&#39;,&#39;0&#39;,&#39;子坐标&#39;,&#39;父坐标&#39;] TF坐标定义(可选) 
-            arguments&#x3D;[&#39;0&#39;, &#39;0&#39;, &#39;0&#39;,&#39;0&#39;, &#39;0&#39;,&#39;0&#39;,&#39;yolo_link&#39;,&#39;base_link&#39;]
-       ）        
-   &#39;&#39;&#39;
-    usb_cam &#x3D; launch_ros.actions.Node(
-            package&#x3D;&#39;usb_cam&#39;, 
-            executable&#x3D;&#39;usb_cam_node_exe&#39;, 
-            name&#x3D;&#39;usb_cam&#39;,
-    )        
-    #这个程序是我自己的，使用前需要更改或者删掉
-    nat_link &#x3D; launch_ros.actions.Node(
-            package&#x3D;&#39;nat_ros2&#39;, 
-            executable&#x3D;&#39;nat_node&#39;, 
-            name&#x3D;&#39;nat&#39;,
-    )
-    
-    ld_pkg &#x3D; LaunchDescription()    #赋值对象
-
-    ld_pkg.add_action(usb_cam)      #调用函数
-    ld_pkg.add_action(nat_link)
-    
-    return ld_pkg</code></pre>
+<pre class="highlight"><span class="line">from launch import LaunchDescription  #引入功能函数库</span><br><span class="line">import launch_ros.actions </span><br><span class="line"></span><br><span class="line">def generate_launch_description():  #默认函数名</span><br><span class="line">   &#x27;&#x27;&#x27;</span><br><span class="line"> 程序名称变量 = 函数打开（</span><br><span class="line">            package=&#x27;功能包名&#x27;, </span><br><span class="line">            executable=&#x27;要启动程序名&#x27;,  #（在python功能被，setup.py中你已经定义了程序名，不用后缀）</span><br><span class="line">            name=&#x27;usb_cam&#x27;, #（随便名称）（可选）</span><br><span class="line">           #arguments=[&#x27;0&#x27;, &#x27;0&#x27;, &#x27;0&#x27;,&#x27;0&#x27;, &#x27;0&#x27;,&#x27;0&#x27;,&#x27;子坐标&#x27;,&#x27;父坐标&#x27;] TF坐标定义(可选) </span><br><span class="line">            arguments=[&#x27;0&#x27;, &#x27;0&#x27;, &#x27;0&#x27;,&#x27;0&#x27;, &#x27;0&#x27;,&#x27;0&#x27;,&#x27;yolo_link&#x27;,&#x27;base_link&#x27;]</span><br><span class="line">       ）        </span><br><span class="line">   &#x27;&#x27;&#x27;</span><br><span class="line">    usb_cam = launch_ros.actions.Node(</span><br><span class="line">            package=&#x27;usb_cam&#x27;, </span><br><span class="line">            executable=&#x27;usb_cam_node_exe&#x27;, </span><br><span class="line">            name=&#x27;usb_cam&#x27;,</span><br><span class="line">    )        </span><br><span class="line">    #这个程序是我自己的，使用前需要更改或者删掉</span><br><span class="line">    nat_link = launch_ros.actions.Node(</span><br><span class="line">            package=&#x27;nat_ros2&#x27;, </span><br><span class="line">            executable=&#x27;nat_node&#x27;, </span><br><span class="line">            name=&#x27;nat&#x27;,</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    ld_pkg = LaunchDescription()    #赋值对象</span><br><span class="line"></span><br><span class="line">    ld_pkg.add_action(usb_cam)      #调用函数</span><br><span class="line">    ld_pkg.add_action(nat_link)</span><br><span class="line">    </span><br><span class="line">    return ld_pkg</span><br></pre>
 
 <p>3、回到luanch文件夹里面打开终端，输入以下命令行</p>
-<pre class="line-numbers language-none"><code class="language-none">ros2 launch nat.launch.py</code></pre>
+<pre class="highlight"><span class="line">ros2 launch nat.launch.py</span><br></pre>
 
 <p>在终端检测是否有问题<img src="https://i.072333.xyz/file/0f8d3dbb61e7fe382b055.png" alt="727bba95-5924-4c41-93d9-4171fe2b9ceb" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://i.072333.xyz/file/0f8d3dbb61e7fe382b055.png" class="lozad post-image"></p>
 <p>4、如果已经可以在终端使用成功，就要在setup.py文件添加一行参数，让这个launch文件可以全局使用</p>
-<pre class="line-numbers language-none"><code class="language-none">from setuptools import find_packages, setup
-from glob import glob    #添加库文件
-import os                #添加库文件
-package_name &#x3D; &#39;nat_ros2&#39;
-
-setup(
-    name&#x3D;package_name,
-    version&#x3D;&#39;0.0.0&#39;,
-    packages&#x3D;find_packages(exclude&#x3D;[&#39;test&#39;]),
-    data_files&#x3D;[
-        (&#39;share&#x2F;ament_index&#x2F;resource_index&#x2F;packages&#39;,
-            [&#39;resource&#x2F;&#39; + package_name]),
-        (&#39;share&#x2F;&#39; + package_name, [&#39;package.xml&#39;]),
-        #添加这一行，直接复制就可以了
-        (os.path.join(&#39;share&#39;,package_name,&#39;launch&#39;),glob(&#39;launch&#x2F;*.launch.py&#39;)),
-    ],
-    install_requires&#x3D;[&#39;setuptools&#39;],
-    zip_safe&#x3D;True,
-    maintainer&#x3D;&#39;xp01&#39;,
-    maintainer_email&#x3D;&#39;xp01@todo.todo&#39;,
-    description&#x3D;&#39;TODO: Package description&#39;,
-    license&#x3D;&#39;TODO: License declaration&#39;,
-    tests_require&#x3D;[&#39;pytest&#39;],
-    entry_points&#x3D;&#123;
-        &#39;console_scripts&#39;: [
-            &#39;nat_ros2 &#x3D; nat_ros2.nat:main&#39;,
-            &#39;nat_node &#x3D; nat_ros2.nat_node:main&#39;,
-            &#39;nat_po &#x3D; nat_ros2.nat_po:main&#39;  
-            
-        ],
-    &#125;,
-)</code></pre>
+<pre class="highlight"><span class="line">from setuptools import find_packages, setup</span><br><span class="line">from glob import glob    #添加库文件</span><br><span class="line">import os                #添加库文件</span><br><span class="line">package_name = &#x27;nat_ros2&#x27;</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name=package_name,</span><br><span class="line">    version=&#x27;0.0.0&#x27;,</span><br><span class="line">    packages=find_packages(exclude=[&#x27;test&#x27;]),</span><br><span class="line">    data_files=[</span><br><span class="line">        (&#x27;share/ament_index/resource_index/packages&#x27;,</span><br><span class="line">            [&#x27;resource/&#x27; + package_name]),</span><br><span class="line">        (&#x27;share/&#x27; + package_name, [&#x27;package.xml&#x27;]),</span><br><span class="line">        #添加这一行，直接复制就可以了</span><br><span class="line">        (os.path.join(&#x27;share&#x27;,package_name,&#x27;launch&#x27;),glob(&#x27;launch/*.launch.py&#x27;)),</span><br><span class="line">    ],</span><br><span class="line">    install_requires=[&#x27;setuptools&#x27;],</span><br><span class="line">    zip_safe=True,</span><br><span class="line">    maintainer=&#x27;xp01&#x27;,</span><br><span class="line">    maintainer_email=&#x27;xp01@todo.todo&#x27;,</span><br><span class="line">    description=&#x27;TODO: Package description&#x27;,</span><br><span class="line">    license=&#x27;TODO: License declaration&#x27;,</span><br><span class="line">    tests_require=[&#x27;pytest&#x27;],</span><br><span class="line">    entry_points=&#123;</span><br><span class="line">        &#x27;console_scripts&#x27;: [</span><br><span class="line">            &#x27;nat_ros2 = nat_ros2.nat:main&#x27;,</span><br><span class="line">            &#x27;nat_node = nat_ros2.nat_node:main&#x27;,</span><br><span class="line">            &#x27;nat_po = nat_ros2.nat_po:main&#x27;  </span><br><span class="line">            </span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre>
 
 <p>多launch文件启动：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54423435/article/details/137117813">ROS2——启动多个launch文件_ros launch文件启动另一个launch文件-CSDN博客</a></p>
 
@@ -857,8 +820,15 @@ setup(
     
     
       <div class="BbeiAn-info">
-        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 阿梓踢的 | 维护次数：50次 | 最近维护时间：2026年4月29日 | 天气小热！  </a>
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 阿梓踢的 | 维护次数：51次 | 最近维护时间：2026年5月30日 | 天气酷酷热！  </a>
       </div>
+      
+        <div class="BbeiAn-info">
+          <span style="padding-left: 25px;background: url(/img/beian.png) no-repeat left center"></span>
+          <a href=" ">网站更新v2.0: 新增ai推荐目录与工具、修复文章目录bug等...（2026.05.30）
+          </a>
+          <br />
+        </div>
       
     
     
@@ -976,7 +946,7 @@ setup(
     
     
       <script>
-        setTimeout(() => {localSearch("search.json")}, 0)
+        setTimeout(() => {localSearch("/search.json")}, 0)
       </script>
     
   </body>

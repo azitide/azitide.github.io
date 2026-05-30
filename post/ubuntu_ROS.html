@@ -35,7 +35,7 @@
     
       <meta 
         property="og:img" 
-        content="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg">
+        content="https://s41.ax1x.com/2026/05/30/pmkV8FU.jpg">
     
     
     
@@ -206,7 +206,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
   <body>
     <div class="wrapper">
@@ -260,6 +260,30 @@
         
       </a>
     
+      <a 
+        href="/ailinks" 
+        class="navbar-menu-item">
+        
+          AI时代
+        
+      </a>
+    
+      <a 
+        href="/ai-tool" 
+        class="navbar-menu-item">
+        
+          AI API测试工具
+        
+      </a>
+    
+      <a 
+        href="https://azitide.github.io/" 
+        class="navbar-menu-item">
+        
+          三周年
+        
+      </a>
+    
     <button 
       class="navbar-menu-item darknavbar navbar-menu-btn" 
       aria-label="Toggle dark mode"
@@ -305,14 +329,14 @@
               <div class="card card-author">
                 
   <img 
-    src="https://pic.imgdb.cn/item/65273f89c458853aefae676f.jpg" 
+    src="https://s41.ax1x.com/2026/05/30/pmkV8FU.jpg" 
     class="author-img"
     width="88"
     height="88"
     alt="author avatar">
 
 <p class="author-name">Azitide</p>
-<p class="author-description">教育具有长期性和滞后性，只有当子弹命中你的心头，你意识到了，这才是教育闭环的完成！</p>
+<p class="author-description">一个摸索的过程不能说有了结果就否定了过程！</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
@@ -368,7 +392,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85ROS%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89V2"><span class="toc-text">ubuntu系统安装ROS（简单版）V2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">一、配置软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装ROS 一键安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-text">报错：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ROS%E5%B0%8F%E4%B9%8C%E9%BE%9F%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">测试ROS小乌龟验证：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros1%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Ros1启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros2%E5%BC%80%E5%90%AF%E5%91%BD%E4%BB%A4-%E2%80%93-ros2%E6%B2%A1%E6%9C%89%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81roscore%EF%BC%81"><span class="toc-text">Ros2开启命令 – ros2没有中心节点，不需要roscore！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E9%85%8D%E7%BD%AErosdep%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A"><span class="toc-text">（全局）配置rosdep（可选）：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rosdep-%E6%98%AF-ROS%EF%BC%88%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82ROS%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%AE%83%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%AE%B8%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82rosdep-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B8%AE%E5%8A%A9%E7%94%A8%E6%88%B7%E8%BD%BB%E6%9D%BE%E5%9C%B0%E5%AE%89%E8%A3%85%E8%BF%99%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82"><span class="toc-text">rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">（全局）更新系统环境：</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85ROS%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89V2"><span class="toc-text">ubuntu系统安装ROS（简单版）V2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">一、配置软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装ROS 一键安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-text">报错：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ROS%E5%B0%8F%E4%B9%8C%E9%BE%9F%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">测试ROS小乌龟验证：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros1%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Ros1启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros2%E5%BC%80%E5%90%AF%E5%91%BD%E4%BB%A4-%E2%80%93-ros2%E6%B2%A1%E6%9C%89%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81roscore%EF%BC%81"><span class="toc-text">Ros2开启命令 – ros2没有中心节点，不需要roscore！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E9%85%8D%E7%BD%AErosdep%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A"><span class="toc-text">（全局）配置rosdep（可选）：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rosdep-%E6%98%AF-ROS%EF%BC%88%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82ROS%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%AE%83%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%AE%B8%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82rosdep-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B8%AE%E5%8A%A9%E7%94%A8%E6%88%B7%E8%BD%BB%E6%9D%BE%E5%9C%B0%E5%AE%89%E8%A3%85%E8%BF%99%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82"><span class="toc-text">rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">（全局）更新系统环境：</span></a></li></ol></li></ol>
       </div>
     </article>
   
@@ -397,13 +421,6 @@
         </div>
       </a>
     
-      <a href="/categories/Linux/">
-        <div class="categories-list-item">
-          Linux
-          <span class="categories-list-item-badge">6</span>
-        </div>
-      </a>
-    
       <a href="/categories/ROS/">
         <div class="categories-list-item">
           ROS
@@ -415,6 +432,13 @@
         <div class="categories-list-item">
           服务器
           <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Linux/">
+        <div class="categories-list-item">
+          Linux
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -470,6 +494,12 @@
       </a>
     
       <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
         href="/tags/YOLO/" 
         title="YOLO">
         <div class="tags-list-item">YOLO</div>
@@ -482,12 +512,6 @@
       </a>
     
       <a 
-        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
-        title="微信小程序">
-        <div class="tags-list-item">微信小程序</div>
-      </a>
-    
-      <a 
         href="/tags/%E6%A1%86%E6%9E%B6/" 
         title="框架">
         <div class="tags-list-item">框架</div>
@@ -497,6 +521,12 @@
         href="/tags/VUE/" 
         title="VUE">
         <div class="tags-list-item">VUE</div>
+      </a>
+    
+      <a 
+        href="/tags/css/" 
+        title="css">
+        <div class="tags-list-item">css</div>
       </a>
     
       <a 
@@ -515,12 +545,6 @@
         href="/tags/JavaScript/" 
         title="JavaScript">
         <div class="tags-list-item">JavaScript</div>
-      </a>
-    
-      <a 
-        href="/tags/css/" 
-        title="css">
-        <div class="tags-list-item">css</div>
       </a>
     
   </div>
@@ -550,21 +574,21 @@
       <span class="dot"></span>
       
         <a 
-          href="/categories/Linux/" 
-          class="post-meta-link">
-          Linux
-        </a>
-      
-        <a 
           href="/categories/ROS/" 
           class="post-meta-link">
           ROS
         </a>
       
+        <a 
+          href="/categories/Linux/" 
+          class="post-meta-link">
+          Linux
+        </a>
+      
     
     
       <span class="dot"></span>
-      <span>871 字</span>
+      <span>859 字</span>
     
   </div>
   
@@ -595,7 +619,7 @@
 <h2 id="一、配置软件源"><a href="#一、配置软件源" class="headerlink" title="一、配置软件源"></a>一、配置软件源</h2><p>👍<em><strong>以安装的电脑的CPU架构选择镜像源</strong></em></p>
 <ul>
 <li><p>查询芯片架构方法<br>命令行输入：</p>
-<pre class="line-numbers language-none"><code class="language-none">lscpu</code></pre>
+<pre class="highlight"><span class="line">lscpu</span><br></pre>
 
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOfRqH.png" class="lozad post-image"src="https://s21.ax1x.com/2025/10/22/pVOfRqH.png"></p>
 </li>
@@ -609,27 +633,27 @@
 <p>🤖<em><strong>进入对应架构的网页-选择-对应版本的配置文本-复制粘贴</strong></em></p>
 <ul>
 <li><p>查询ubuntu版本LTS方法  </p>
-<pre class="line-numbers language-none"><code class="language-none">uname -a</code></pre>
+<pre class="highlight"><span class="line">uname -a</span><br></pre>
 
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/pVOfoJP"><img src="https://s21.ax1x.com/2025/10/22/pVOfoJP.png" alt="pVOfoJP.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOfoJP.png" class="lozad post-image lozad post-image lozad post-image" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOfoJP.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOfoJP.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/pVOfoJP"><img src="https://s21.ax1x.com/2025/10/22/pVOfoJP.png" alt="pVOfoJP.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOfoJP.png" class="lozad post-image"></a></p>
 </li>
 <li><p>对应版本的配置文本-复制粘贴 -更改系统源文件</p>
 </li>
 </ul>
-<p>  <img src="https://s21.ax1x.com/2025/10/22/pVOf7z8.png" alt="pVOf7z8.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOf7z8.png" class="lozad post-image lozad post-image lozad post-image" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOf7z8.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOf7z8.png"></p>
+<p>  <img src="https://s21.ax1x.com/2025/10/22/pVOf7z8.png" alt="pVOf7z8.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOf7z8.png" class="lozad post-image"></p>
 <ol>
 <li><p>打开 Ubuntu 的终端，输入以下命令行打开一个文件内容</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo apt update &amp; sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list</code></pre>
+<pre class="highlight"><span class="line">sudo apt update &amp; sudo gedit /etc/apt/sources.list</span><br></pre>
 </li>
 <li><p>把原本的内容全删掉，然后复制刚才网页生成的文本框内容粘贴上去，保存文件，退出</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/pVOhSJ0"><img src="https://s21.ax1x.com/2025/10/22/pVOhSJ0.png" alt="pVOhSJ0.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhSJ0.png" class="lozad post-image lozad post-image lozad post-image" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhSJ0.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhSJ0.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/pVOhSJ0"><img src="https://s21.ax1x.com/2025/10/22/pVOhSJ0.png" alt="pVOhSJ0.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhSJ0.png" class="lozad post-image"></a></p>
 </li>
 </ol>
 <h2 id="二、安装ROS-一键安装"><a href="#二、安装ROS-一键安装" class="headerlink" title="二、安装ROS 一键安装"></a>二、安装ROS 一键安装</h2><ol>
 <li><p>这里我们用鱼香ROS一键安装、打开ubuntu终端，输入：</p>
-<pre class="line-numbers language-none"><code class="language-none">wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros</code></pre>
+<pre class="highlight"><span class="line">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</span><br></pre>
 
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/pVOhFL4"><img src="https://s21.ax1x.com/2025/10/22/pVOhFL4.png" alt="pVOhFL4.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhFL4.png" class="lozad post-image lozad post-image lozad post-image" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhFL4.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhFL4.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/pVOhFL4"><img src="https://s21.ax1x.com/2025/10/22/pVOhFL4.png" alt="pVOhFL4.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://s21.ax1x.com/2025/10/22/pVOhFL4.png" class="lozad post-image"></a></p>
 <p><strong>输入选择顺序：</strong></p>
 <ul>
 <li>第一步： <code>一键安装（推荐）ROS</code>    1</li>
@@ -689,34 +713,34 @@
 <hr>
 <h3 id="测试ROS小乌龟验证："><a href="#测试ROS小乌龟验证：" class="headerlink" title="测试ROS小乌龟验证："></a>测试ROS小乌龟验证：</h3><ul>
 <li><h4 id="Ros1启动命令"><a href="#Ros1启动命令" class="headerlink" title="Ros1启动命令"></a>Ros1启动命令</h4><p>1、<strong>新建三个终端，每条命令在每一个终端单独执行</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">roscore</code></pre>
+<pre class="highlight"><span class="line">roscore</span><br></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">rosrun turtlesim turtlesim_node</code></pre>
+<pre class="highlight"><span class="line">rosrun turtlesim turtlesim_node</span><br></pre>
 
 <p>2、第二命令执行后会出现 弹窗 一个蓝色屏幕的小海龟在中间</p>
-<pre class="line-numbers language-none"><code class="language-none">rosrun turtlesim  turtle_teleop_key</code></pre>
+<pre class="highlight"><span class="line">rosrun turtlesim  turtle_teleop_key</span><br></pre>
 
 <p>3、第三命令执行后，把鼠标放在终端，就可以通过按下键盘的方向 ↑ ↓ ← →键来对小海龟进行控制了。</p>
 </li>
 <li><h4 id="Ros2开启命令-–-ros2没有中心节点，不需要roscore！"><a href="#Ros2开启命令-–-ros2没有中心节点，不需要roscore！" class="headerlink" title="Ros2开启命令 – ros2没有中心节点，不需要roscore！"></a>Ros2开启命令 – ros2没有中心节点，不需要roscore！</h4><p>1、新建第一个终端，命令执行后会出现 弹窗 一个蓝色屏幕的小海龟在中间</p>
-<pre class="line-numbers language-none"><code class="language-none">ros2 run turtlesim turtlesim_node</code></pre>
+<pre class="highlight"><span class="line">ros2 run turtlesim turtlesim_node</span><br></pre>
 
 <p>2、新建第二个终端，执行命令把鼠标放在终端，就可以通过按下键盘的方向 ↑ ↓ ← →键来对小海龟进行控制</p>
-<pre class="line-numbers language-none"><code class="language-none">ros2 run turtlesim  turtle_teleop_key</code></pre></li>
+<pre class="highlight"><span class="line">ros2 run turtlesim  turtle_teleop_key</span><br></pre></li>
 </ul>
 <p>​         安装完成</p>
 <hr>
 <h3 id="（全局）配置rosdep（可选）："><a href="#（全局）配置rosdep（可选）：" class="headerlink" title="（全局）配置rosdep（可选）："></a>（全局）配置rosdep（可选）：</h3><blockquote>
 <h5 id="rosdep-是-ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep-的作用是帮助用户轻松地安装这些系统依赖项。"><a href="#rosdep-是-ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep-的作用是帮助用户轻松地安装这些系统依赖项。" class="headerlink" title="rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。"></a><code>rosdep</code> <strong>是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。</strong><code>rosdep</code> <strong>的作用是帮助用户轻松地安装这些系统依赖项。</strong></h5></blockquote>
 <p>安装方法，打开ubuntu终端，输入：</p>
-<pre class="line-numbers language-none"><code class="language-none">wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros</code></pre>
+<pre class="highlight"><span class="line">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</span><br></pre>
 
 <ul>
 <li><code>一键安装rosdep</code>    3</li>
 </ul>
 <hr>
 <h3 id="（全局）更新系统环境："><a href="#（全局）更新系统环境：" class="headerlink" title="（全局）更新系统环境："></a>（全局）更新系统环境：</h3><p>打开ubuntu终端，输入：</p>
-<pre class="line-numbers language-none"><code class="language-none">wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros</code></pre>
+<pre class="highlight"><span class="line">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</span><br></pre>
 
 <ul>
 <li><code>一键配置ROS环境</code>   4</li>
@@ -834,7 +858,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85ROS%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89V2"><span class="toc-text">ubuntu系统安装ROS（简单版）V2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">一、配置软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装ROS 一键安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-text">报错：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ROS%E5%B0%8F%E4%B9%8C%E9%BE%9F%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">测试ROS小乌龟验证：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros1%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Ros1启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros2%E5%BC%80%E5%90%AF%E5%91%BD%E4%BB%A4-%E2%80%93-ros2%E6%B2%A1%E6%9C%89%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81roscore%EF%BC%81"><span class="toc-text">Ros2开启命令 – ros2没有中心节点，不需要roscore！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E9%85%8D%E7%BD%AErosdep%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A"><span class="toc-text">（全局）配置rosdep（可选）：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rosdep-%E6%98%AF-ROS%EF%BC%88%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82ROS%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%AE%83%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%AE%B8%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82rosdep-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B8%AE%E5%8A%A9%E7%94%A8%E6%88%B7%E8%BD%BB%E6%9D%BE%E5%9C%B0%E5%AE%89%E8%A3%85%E8%BF%99%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82"><span class="toc-text">rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">（全局）更新系统环境：</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85ROS%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89V2"><span class="toc-text">ubuntu系统安装ROS（简单版）V2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">一、配置软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装ROS 一键安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-text">报错：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ROS%E5%B0%8F%E4%B9%8C%E9%BE%9F%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">测试ROS小乌龟验证：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros1%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Ros1启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros2%E5%BC%80%E5%90%AF%E5%91%BD%E4%BB%A4-%E2%80%93-ros2%E6%B2%A1%E6%9C%89%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81roscore%EF%BC%81"><span class="toc-text">Ros2开启命令 – ros2没有中心节点，不需要roscore！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E9%85%8D%E7%BD%AErosdep%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A"><span class="toc-text">（全局）配置rosdep（可选）：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rosdep-%E6%98%AF-ROS%EF%BC%88%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82ROS%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%AE%83%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%AE%B8%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82rosdep-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B8%AE%E5%8A%A9%E7%94%A8%E6%88%B7%E8%BD%BB%E6%9D%BE%E5%9C%B0%E5%AE%89%E8%A3%85%E8%BF%99%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82"><span class="toc-text">rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">（全局）更新系统环境：</span></a></li></ol></li></ol>
 </div>
 
             </main>
@@ -849,7 +873,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85ROS%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89V2"><span class="toc-text">ubuntu系统安装ROS（简单版）V2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">一、配置软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装ROS 一键安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-text">报错：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ROS%E5%B0%8F%E4%B9%8C%E9%BE%9F%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">测试ROS小乌龟验证：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros1%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Ros1启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros2%E5%BC%80%E5%90%AF%E5%91%BD%E4%BB%A4-%E2%80%93-ros2%E6%B2%A1%E6%9C%89%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81roscore%EF%BC%81"><span class="toc-text">Ros2开启命令 – ros2没有中心节点，不需要roscore！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E9%85%8D%E7%BD%AErosdep%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A"><span class="toc-text">（全局）配置rosdep（可选）：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rosdep-%E6%98%AF-ROS%EF%BC%88%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82ROS%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%AE%83%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%AE%B8%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82rosdep-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B8%AE%E5%8A%A9%E7%94%A8%E6%88%B7%E8%BD%BB%E6%9D%BE%E5%9C%B0%E5%AE%89%E8%A3%85%E8%BF%99%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82"><span class="toc-text">rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">（全局）更新系统环境：</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85ROS%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89V2"><span class="toc-text">ubuntu系统安装ROS（简单版）V2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">一、配置软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ROS-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装ROS 一键安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-text">报错：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ROS%E5%B0%8F%E4%B9%8C%E9%BE%9F%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">测试ROS小乌龟验证：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros1%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Ros1启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ros2%E5%BC%80%E5%90%AF%E5%91%BD%E4%BB%A4-%E2%80%93-ros2%E6%B2%A1%E6%9C%89%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81roscore%EF%BC%81"><span class="toc-text">Ros2开启命令 – ros2没有中心节点，不需要roscore！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E9%85%8D%E7%BD%AErosdep%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A"><span class="toc-text">（全局）配置rosdep（可选）：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rosdep-%E6%98%AF-ROS%EF%BC%88%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82ROS%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%AE%83%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%AE%B8%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82rosdep-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B8%AE%E5%8A%A9%E7%94%A8%E6%88%B7%E8%BD%BB%E6%9D%BE%E5%9C%B0%E5%AE%89%E8%A3%85%E8%BF%99%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E9%A1%B9%E3%80%82"><span class="toc-text">rosdep 是 ROS（机器人操作系统）中的一个工具，用于安装系统依赖项。ROS是一个用于构建机器人软件的开源框架，它依赖于许多系统级别的软件包。rosdep 的作用是帮助用户轻松地安装这些系统依赖项。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%85%A8%E5%B1%80%EF%BC%89%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-text">（全局）更新系统环境：</span></a></li></ol></li></ol>
     </article>
   
   
@@ -922,8 +946,15 @@
     
     
       <div class="BbeiAn-info">
-        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 阿梓踢的 | 维护次数：50次 | 最近维护时间：2026年4月29日 | 天气小热！  </a>
+        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">Azitide = 阿梓踢的 | 维护次数：51次 | 最近维护时间：2026年5月30日 | 天气酷酷热！  </a>
       </div>
+      
+        <div class="BbeiAn-info">
+          <span style="padding-left: 25px;background: url(/img/beian.png) no-repeat left center"></span>
+          <a href=" ">网站更新v2.0: 新增ai推荐目录与工具、修复文章目录bug等...（2026.05.30）
+          </a>
+          <br />
+        </div>
       
     
     
@@ -1041,7 +1072,7 @@
     
     
       <script>
-        setTimeout(() => {localSearch("search.json")}, 0)
+        setTimeout(() => {localSearch("/search.json")}, 0)
       </script>
     
   </body>
