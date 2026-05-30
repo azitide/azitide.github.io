@@ -65,7 +65,7 @@
     }
     function loadCSS(href, data, attr) {
       var sheet = document.createElement('link');
-      sheet.ref = 'stylesheet';
+      sheet.rel = 'stylesheet';
       sheet.href = href;
       sheet.dataset[data] = attr;
       document.head.appendChild(sheet);
